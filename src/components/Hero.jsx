@@ -137,18 +137,24 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Floating Stat Badges */}
-              <div className="absolute top-4 -left-4 sm:left-2 bg-white/90 backdrop-blur-xs px-3.5 py-2 rounded-xl shadow-md border border-[#2F5233]/10 flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#2F5233]" />
-                <div className="text-[11px] font-medium text-[#1F2E22]">
-                  <span className="font-bold text-[#2F5233]">Classical</span> Chikitsa
+              {/* Floating Stat Badges - Neatly Positioned & Fully Layered on Top (z-20) */}
+              <div className="absolute -top-3 -left-2 sm:-top-4 sm:-left-4 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl shadow-[#2F5233]/10 border border-[#2F5233]/15 flex items-center gap-3 transition-transform hover:scale-105">
+                <div className="w-8 h-8 rounded-xl bg-[#EAF2E8] flex items-center justify-center text-[#2F5233] shrink-0 border border-[#7FA173]/30">
+                  <ShieldCheck className="w-4 h-4 text-[#2F5233]" />
+                </div>
+                <div className="text-xs leading-tight">
+                  <span className="font-bold text-[#2F5233] block">Classical Chikitsa</span>
+                  <span className="text-[10px] text-[#1F2E22]/65 font-medium">Authentic Ayurveda</span>
                 </div>
               </div>
 
-              <div className="absolute bottom-6 -right-4 sm:right-2 bg-white/90 backdrop-blur-xs px-3.5 py-2 rounded-xl shadow-md border border-[#2F5233]/10 flex items-center gap-2">
-                <HeartPulse className="w-4 h-4 text-[#C08A28]" />
-                <div className="text-[11px] font-medium text-[#1F2E22]">
-                  <span className="font-bold text-[#2F5233]">Evidence</span> Informed
+              <div className="absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-4 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl shadow-[#2F5233]/10 border border-[#2F5233]/15 flex items-center gap-3 transition-transform hover:scale-105">
+                <div className="w-8 h-8 rounded-xl bg-[#FAF6EC] flex items-center justify-center text-[#C08A28] shrink-0 border border-[#C08A28]/30">
+                  <HeartPulse className="w-4 h-4 text-[#C08A28]" />
+                </div>
+                <div className="text-xs leading-tight">
+                  <span className="font-bold text-[#2F5233] block">Evidence Informed</span>
+                  <span className="text-[10px] text-[#1F2E22]/65 font-medium">Clinical Precision</span>
                 </div>
               </div>
 
