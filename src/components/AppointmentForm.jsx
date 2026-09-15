@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { SPECIALTIES, CLINIC_INFO } from '../data/clinicData';
+import { Link } from 'react-router-dom';
+import { SPECIALTIES } from '../data/clinicData';
+import logoMark from '../assets/logo-mark.png';
 import { 
   Calendar, 
   Clock, 
@@ -9,10 +11,9 @@ import {
   Phone, 
   FileText, 
   CheckCircle, 
-  AlertCircle, 
-  ArrowRight,
   ShieldCheck,
-  RefreshCw
+  RefreshCw,
+  ArrowRight
 } from 'lucide-react';
 
 export default function AppointmentForm({ preselectedSpecialty }) {
@@ -34,14 +35,12 @@ export default function AppointmentForm({ preselectedSpecialty }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [bookingRef, setBookingRef] = useState('');
 
-  // Update specialty if preselectedSpecialty prop changes
   useEffect(() => {
     if (preselectedSpecialty) {
       setFormData(prev => ({ ...prev, specialty: preselectedSpecialty }));
     }
   }, [preselectedSpecialty]);
 
-  // Set default date to tomorrow
   useEffect(() => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -81,13 +80,12 @@ export default function AppointmentForm({ preselectedSpecialty }) {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Simulate brief medical confirmation processing
     setTimeout(() => {
       const generatedId = `ASK-${Math.floor(1000 + Math.random() * 9000)}`;
       setBookingRef(generatedId);
       setIsSubmitting(false);
       setIsSuccess(true);
-    }, 700);
+    }, 600);
   };
 
   const resetForm = () => {
@@ -103,8 +101,14 @@ export default function AppointmentForm({ preselectedSpecialty }) {
   };
 
   return (
-    <section id="appointment" className="py-16 sm:py-24 bg-gradient-to-b from-[#FAF6EC] to-[#F4EEDF] border-b border-[#2F5233]/10">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="appointment" className="relative py-14 sm:py-20 bg-gradient-to-b from-[#FAF6EC] to-[#F4EEDF] border-b border-[#2F5233]/10 overflow-hidden">
+      
+      {/* Background Watermark (Large, 5% opacity, green gradient tones) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] pointer-events-none opacity-[0.05] select-none">
+        <img src={logoMark} alt="" className="w-full h-full object-contain filter" />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center mb-10">
@@ -127,27 +131,30 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
           {isSuccess ? (
             /* Success Confirmation State */
-            <div className="py-8 text-center space-y-6 animate-in fade-in zoom-in-95 duration-300">
-              <div className="w-16 h-16 rounded-full bg-[#EAF2E8] text-[#2F5233] flex items-center justify-center mx-auto border border-[#7FA173]/30">
-                <CheckCircle className="w-8 h-8 text-[#2F5233]" />
+            <div className="py-6 text-center space-y-5 animate-in fade-in zoom-in-95 duration-300">
+              
+              {/* Small Centered Logo Mark in Confirmation */}
+              <div className="w-14 h-14 mx-auto mb-2 flex items-center justify-center">
+                <img src={logoMark} alt="AyurSankalpa Mark" className="w-full h-full object-contain drop-shadow-xs" />
               </div>
 
-              <div className="space-y-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#C08A28]">
-                  Demo Appointment Confirmed
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#1F2E22]">
-                  Consultation Request Registered
+              <div className="space-y-1.5">
+                <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#2F5233] bg-[#EAF2E8] px-3 py-1 rounded-full border border-[#7FA173]/30">
+                  <CheckCircle className="w-3.5 h-3.5 text-[#2F5233]" />
+                  <span>Consultation Request Confirmed</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#1F2E22] pt-2">
+                  Booking Reference #{bookingRef}
                 </h3>
-                <p className="text-sm text-[#1F2E22]/70 max-w-lg mx-auto font-sans">
-                  Your simulated appointment with Dr. Ruturaj Kadam has been recorded. Below is the confirmation summary.
+                <p className="text-xs sm:text-sm text-[#1F2E22]/70 max-w-lg mx-auto font-sans">
+                  Your simulated appointment with Dr. Ruturaj Kadam has been recorded. Below is your consultation summary.
                 </p>
               </div>
 
               {/* Summary Receipt Box */}
               <div className="max-w-lg mx-auto bg-[#FAF6EC] p-6 rounded-2xl border border-[#2F5233]/15 text-left space-y-3.5 text-sm font-sans">
                 <div className="flex justify-between items-center pb-3 border-b border-[#2F5233]/10">
-                  <span className="text-xs text-[#1F2E22]/60">Booking Reference</span>
+                  <span className="text-xs text-[#1F2E22]/60">Reference ID</span>
                   <span className="font-mono font-bold text-[#2F5233] bg-[#EAF2E8] px-2.5 py-0.5 rounded text-xs">
                     {bookingRef}
                   </span>
@@ -175,7 +182,7 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                 </div>
 
                 <div className="pt-2 border-t border-[#2F5233]/10">
-                  <span className="text-xs text-[#1F2E22]/60 block">Clinical Specialty</span>
+                  <span className="text-xs text-[#1F2E22]/60 block">Specialty Focus</span>
                   <span className="font-semibold text-[#1F2E22]">{formData.specialty}</span>
                 </div>
 
@@ -191,17 +198,17 @@ export default function AppointmentForm({ preselectedSpecialty }) {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
                 <button
                   onClick={resetForm}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#2F5233] text-[#FAF6EC] font-semibold text-sm hover:bg-[#1E3721] transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#2F5233] text-[#FAF6EC] font-semibold text-sm hover:bg-[#1E3721] transition-all cursor-pointer"
                 >
                   <RefreshCw className="w-4 h-4 text-[#C08A28]" />
                   <span>Book Another Appointment</span>
                 </button>
-                <a
-                  href="#specialties"
+                <Link
+                  to="/specialties"
                   className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl border border-[#2F5233]/20 text-[#1F2E22] font-medium text-sm hover:bg-[#EAF2E8] transition-all"
                 >
-                  Back to Specialities
-                </a>
+                  Explore Specialities
+                </Link>
               </div>
             </div>
           ) : (
@@ -217,7 +224,7 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                   <button
                     type="button"
                     onClick={() => setFormData({ ...formData, consultationType: 'in-clinic' })}
-                    className={`p-3.5 rounded-xl border text-left flex items-start gap-3 transition-all ${
+                    className={`p-3.5 rounded-xl border text-left flex items-start gap-3 transition-all cursor-pointer ${
                       formData.consultationType === 'in-clinic'
                         ? 'bg-[#EAF2E8] border-[#2F5233] ring-1 ring-[#2F5233]'
                         : 'bg-white border-[#2F5233]/15 hover:bg-[#FAF6EC]'
@@ -233,7 +240,7 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                   <button
                     type="button"
                     onClick={() => setFormData({ ...formData, consultationType: 'video' })}
-                    className={`p-3.5 rounded-xl border text-left flex items-start gap-3 transition-all ${
+                    className={`p-3.5 rounded-xl border text-left flex items-start gap-3 transition-all cursor-pointer ${
                       formData.consultationType === 'video'
                         ? 'bg-[#EAF2E8] border-[#2F5233] ring-1 ring-[#2F5233]'
                         : 'bg-white border-[#2F5233]/15 hover:bg-[#FAF6EC]'
@@ -374,7 +381,7 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
                   <div>
                     <label className="block text-xs text-[#1F2E22]/70 mb-1 font-medium">
-                      Currently Taking Allopathic / Other Medications?
+                      Currently Taking Allopathic Medications?
                     </label>
                     <select
                       value={formData.hasExistingMedications}

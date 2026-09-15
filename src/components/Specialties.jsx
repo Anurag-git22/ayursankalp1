@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SPECIALTIES } from '../data/clinicData';
 import { 
   Activity, 
@@ -19,6 +20,7 @@ import {
 } from 'lucide-react';
 
 export default function Specialties({ onSelectSpecialty }) {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeSpecialty, setActiveSpecialty] = useState(null);
@@ -60,10 +62,7 @@ export default function Specialties({ onSelectSpecialty }) {
     if (onSelectSpecialty) {
       onSelectSpecialty(specialtyTitle);
     }
-    const formElement = document.getElementById('appointment');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    navigate(`/appointment?specialty=${encodeURIComponent(specialtyTitle)}`);
   };
 
   return (

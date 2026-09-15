@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { CLINIC_INFO } from '../data/clinicData';
 import { MapPin, Phone, ArrowUp } from 'lucide-react';
@@ -17,8 +18,8 @@ export default function Footer() {
           
           {/* Col 1: Brand & Doctor Summary */}
           <div className="md:col-span-6 space-y-4">
-            <div className="bg-[#FAF6EC] p-3 rounded-2xl inline-block">
-              <Logo size="default" />
+            <div className="bg-[#FAF6EC] p-3.5 rounded-2xl inline-block shadow-md">
+              <Logo size="large" />
             </div>
 
             <p className="text-sm text-[#EAF2E8]/85 max-w-md leading-relaxed font-sans pt-1">
@@ -33,15 +34,13 @@ export default function Footer() {
           {/* Col 2: Navigation Links */}
           <div className="md:col-span-3 space-y-3 font-sans text-sm">
             <h4 className="font-serif font-bold text-[#FAF6EC] text-base">
-              Quick Navigation
+              Explore AyurSankalpa
             </h4>
             <ul className="space-y-2 text-[#EAF2E8]/80 text-xs">
-              <li><a href="#specialties" className="hover:text-[#C08A28] transition-colors">13 Clinical Specialities</a></li>
-              <li><a href="#doctor" className="hover:text-[#C08A28] transition-colors">Dr. Ruturaj Kadam Profile</a></li>
-              <li><a href="#approach" className="hover:text-[#C08A28] transition-colors">3 Pillars of Healing</a></li>
-              <li><a href="#journey" className="hover:text-[#C08A28] transition-colors">Patient Consultation Protocol</a></li>
-              <li><a href="#appointment" className="hover:text-[#C08A28] transition-colors">Book Consultation</a></li>
-              <li><a href="#location" className="hover:text-[#C08A28] transition-colors">Clinic Address & Hours</a></li>
+              <li><Link to="/" className="hover:text-[#C08A28] transition-colors">Home</Link></li>
+              <li><Link to="/about" className="hover:text-[#C08A28] transition-colors">Dr. Ruturaj Kadam & Approach</Link></li>
+              <li><Link to="/specialties" className="hover:text-[#C08A28] transition-colors">All 13 Clinical Specialities</Link></li>
+              <li><Link to="/appointment" className="hover:text-[#C08A28] transition-colors">Book Consultation & Location</Link></li>
             </ul>
           </div>
 
@@ -68,12 +67,12 @@ export default function Footer() {
             </div>
 
             <div className="pt-2">
-              <a
-                href="#appointment"
+              <Link
+                to="/appointment"
                 className="inline-block px-4 py-2 rounded-lg bg-[#2F5233] border border-[#7FA173]/30 text-[#FAF6EC] font-semibold text-xs hover:bg-[#FAF6EC] hover:text-[#1F2E22] transition-colors"
               >
                 Book Appointment
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -90,7 +89,7 @@ export default function Footer() {
             <span>© {new Date().getFullYear()} AyurSankalpa Clinic. All rights reserved.</span>
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-full bg-[#2F5233] text-[#FAF6EC] hover:bg-[#C08A28] transition-colors"
+              className="p-2 rounded-full bg-[#2F5233] text-[#FAF6EC] hover:bg-[#C08A28] transition-colors cursor-pointer"
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-3.5 h-3.5" />

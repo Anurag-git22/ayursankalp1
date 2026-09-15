@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from './Logo';
 import { CLINIC_INFO } from '../data/clinicData';
-import { Phone, MapPin, Clock, Calendar, Menu, X, ArrowRight } from 'lucide-react';
+import { Phone, MapPin, Clock, Calendar, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,11 +17,10 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: 'Specialities', href: '#specialties' },
-    { label: 'Dr. Ruturaj Kadam', href: '#doctor' },
-    { label: 'Clinical Approach', href: '#approach' },
-    { label: 'Healing Journey', href: '#journey' },
-    { label: 'Location & Hours', href: '#location' },
+    { label: 'Home', path: '/' },
+    { label: 'About Doctor', path: '/about' },
+    { label: '13 Specialities', path: '/specialties' },
+    { label: 'Appointment & Location', path: '/appointment' },
   ];
 
   return (
@@ -63,33 +63,45 @@ export default function Navbar() {
           : 'bg-[#FAF6EC] py-4 border-b border-[#2F5233]/5'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <a href="#" className="focus:outline-none">
+          <Link to="/" className="focus:outline-none" onClick={() => setMobileMenuOpen(false)}>
             <Logo size={isScrolled ? 'small' : 'default'} />
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center space-x-7">
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-[#1F2E22] hover:text-[#2F5233] transition-colors relative py-1 group"
+                to={link.path}
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors relative py-1 group ${
+                    isActive
+                      ? 'text-[#2F5233] font-semibold'
+                      : 'text-[#1F2E22] hover:text-[#2F5233]'
+                  }`
+                }
               >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#C08A28] transition-all duration-200 group-hover:w-full" />
-              </a>
+                {({ isActive }) => (
+                  <>
+                    {link.label}
+                    <span className={`absolute bottom-0 left-0 h-0.5 bg-[#C08A28] transition-all duration-200 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`} />
+                  </>
+                )}
+              </NavLink>
             ))}
           </div>
 
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-3">
-            <a
-              href="#appointment"
+            <Link
+              to="/appointment"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2F5233] text-[#FAF6EC] text-sm font-semibold hover:bg-[#1E3721] hover:shadow-lg hover:shadow-[#2F5233]/20 active:scale-95 transition-all duration-200"
             >
               <Calendar className="w-4 h-4 text-[#C08A28]" />
               <span>Book Appointment</span>
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -107,26 +119,32 @@ export default function Navbar() {
           <div className="lg:hidden bg-[#FAF6EC] border-b border-[#2F5233]/10 px-4 pt-3 pb-6 space-y-4 shadow-xl animate-in slide-in-from-top-2 duration-200">
             <div className="flex flex-col space-y-3 pt-2">
               {navLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.label}
-                  href={link.href}
+                  to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-md text-base font-medium text-[#1F2E22] hover:bg-[#EAF2E8] hover:text-[#2F5233] transition-colors"
+                  className={({ isActive }) =>
+                    `px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                      isActive
+                        ? 'bg-[#EAF2E8] text-[#2F5233] font-bold'
+                        : 'text-[#1F2E22] hover:bg-[#EAF2E8] hover:text-[#2F5233]'
+                    }`
+                  }
                 >
                   {link.label}
-                </a>
+                </NavLink>
               ))}
             </div>
 
             <div className="pt-3 border-t border-[#2F5233]/10 flex flex-col gap-3">
-              <a
-                href="#appointment"
+              <Link
+                to="/appointment"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#2F5233] text-[#FAF6EC] font-semibold text-center shadow-md"
               >
                 <Calendar className="w-4 h-4 text-[#C08A28]" />
                 <span>Book Appointment</span>
-              </a>
+              </Link>
 
               <a
                 href={`tel:${CLINIC_INFO.phone}`}

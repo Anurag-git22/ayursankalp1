@@ -1,60 +1,42 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import DoctorProfile from './components/DoctorProfile';
-import ApproachPillars from './components/ApproachPillars';
-import Specialties from './components/Specialties';
-import TrustBadges from './components/TrustBadges';
-import TreatmentFlow from './components/TreatmentFlow';
-import AppointmentForm from './components/AppointmentForm';
-import ClinicLocation from './components/ClinicLocation';
-import FAQ from './components/FAQ';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import SpecialtiesPage from './pages/SpecialtiesPage';
+import AppointmentPage from './pages/AppointmentPage';
 
 export default function App() {
-  const [selectedSpecialtyForBooking, setSelectedSpecialtyForBooking] = useState('');
-
-  const handleSelectSpecialty = (specialtyTitle) => {
-    setSelectedSpecialtyForBooking(specialtyTitle);
-  };
+  const [selectedSpecialty, setSelectedSpecialty] = useState('');
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF6EC] text-[#1F2E22] selection:bg-[#7FA173]/30 selection:text-[#1F2E22]">
-      {/* Navigation */}
-      <Navbar />
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col bg-[#FAF6EC] text-[#1F2E22] selection:bg-[#7FA173]/30 selection:text-[#1F2E22]">
+        {/* Shared Navbar across all pages */}
+        <Navbar />
 
-      {/* Main Content Sections */}
-      <main className="flex-grow">
-        {/* 1. Hero Section */}
-        <Hero />
+        {/* Multipage Routes */}
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route
+              path="/specialties"
+              element={<SpecialtiesPage onSelectSpecialty={setSelectedSpecialty} />}
+            />
+            <Route path="/appointment" element={<AppointmentPage />} />
+            {/* Fallback to Home */}
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        </main>
 
-        {/* 2. Trust Badges Strip (5 authentic badges from banner) */}
-        <TrustBadges />
-
-        {/* 3. Doctor Credentials & Profile */}
-        <DoctorProfile />
-
-        {/* 4. Approach Pillars (Evidence-Informed, Personalized, Lifestyle Medicine) */}
-        <ApproachPillars />
-
-        {/* 5. 13 Clinical Specialities (Interactive Filter & Condition Selection) */}
-        <Specialties onSelectSpecialty={handleSelectSpecialty} />
-
-        {/* 6. Patient Consultation & Treatment Journey */}
-        <TreatmentFlow />
-
-        {/* 7. Appointment Booking Form */}
-        <AppointmentForm preselectedSpecialty={selectedSpecialtyForBooking} />
-
-        {/* 8. Clinic Location, Map & Timings */}
-        <ClinicLocation />
-
-        {/* 9. Frequently Answered Questions */}
-        <FAQ />
-      </main>
-
-      {/* Footer */}
-      <Footer />
-    </div>
+        {/* Shared Footer across all pages */}
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
