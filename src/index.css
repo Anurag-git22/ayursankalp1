@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  
+  --color-ink: #1F2E22;
+  --color-forest: #2F5233;
+  --color-forest-dark: #1E3721;
+  --color-forest-light: #3D6A42;
+  --color-sage: #7FA173;
+  --color-sage-light: #EAF2E8;
+  --color-sage-muted: #9EBD92;
+  --color-ivory: #FAF6EC;
+  --color-ivory-warm: #F4EEDF;
+  --color-turmeric: #C08A28;
+  --color-turmeric-hover: #A7741C;
+  --color-turmeric-light: #F7E7C4;
+}
+
+:root {
+  --ink: #1F2E22;
+  --forest: #2F5233;
+  --forest-dark: #1E3721;
+  --sage: #7FA173;
+  --sage-light: #EAF2E8;
+  --ivory: #FAF6EC;
+  --ivory-warm: #F4EEDF;
+  --turmeric: #C08A28;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--ivory);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Subtle background pattern */
+.bg-mandala-subtle {
+  background-image: radial-gradient(rgba(47, 82, 51, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Custom delicate borders */
+.border-forest-15 {
+  border-color: rgba(47, 82, 51, 0.15);
+}
+
+.border-turmeric-30 {
+  border-color: rgba(192, 138, 40, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF6EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #7FA173;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2F5233;
+}
