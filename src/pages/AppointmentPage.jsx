@@ -3,13 +3,21 @@ import { useSearchParams, Link } from 'react-router-dom';
 import AppointmentForm from '../components/AppointmentForm';
 import ClinicLocation from '../components/ClinicLocation';
 import FAQ from '../components/FAQ';
+import logoMark from '../assets/logo-mark.png';
 
 export default function AppointmentPage() {
   const [searchParams] = useSearchParams();
   const specialtyFromUrl = searchParams.get('specialty');
 
   return (
-    <div>
+    <div className="relative">
+      
+      {/* Background Watermark */}
+      <div className="absolute top-40 right-1/2 translate-x-1/2 w-[700px] h-[700px] pointer-events-none opacity-[0.05] select-none z-0">
+        <img src={logoMark} alt="" className="w-full h-full object-contain filter" />
+      </div>
+
+      <div className="relative z-10">
       {/* Page Header */}
       <div className="bg-[#F5EFE0]/60 border-b border-[#2F5233]/10 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,6 +43,7 @@ export default function AppointmentPage() {
 
       {/* 3. Clinical FAQs */}
       <FAQ />
+      </div>
     </div>
   );
 }

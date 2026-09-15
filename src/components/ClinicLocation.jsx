@@ -23,13 +23,13 @@ export default function ClinicLocation() {
         </div>
 
         {/* Two-Column Grid: Location Details & Interactive Visual Map Guide */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Left Column: Address, Phone, Hours */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-6 flex flex-col space-y-6 h-full">
             
             {/* Address Card */}
-            <div className="bg-white/85 p-6 sm:p-7 rounded-2xl border border-[#2F5233]/15 shadow-xs space-y-4">
+            <div className="bg-white/85 p-6 sm:p-7 rounded-2xl border border-[#2F5233]/15 shadow-xs space-y-4 flex-grow">
               <div className="flex items-start gap-3.5">
                 <div className="w-10 h-10 rounded-xl bg-[#EAF2E8] text-[#2F5233] flex items-center justify-center shrink-0 border border-[#7FA173]/30">
                   <MapPin className="w-5 h-5 text-[#2F5233]" />
@@ -61,7 +61,7 @@ export default function ClinicLocation() {
             </div>
 
             {/* Operating Hours Card */}
-            <div className="bg-white/85 p-6 sm:p-7 rounded-2xl border border-[#2F5233]/15 shadow-xs space-y-4">
+            <div className="bg-white/85 p-6 sm:p-7 rounded-2xl border border-[#2F5233]/15 shadow-xs space-y-4 flex-grow">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[#EAF2E8] text-[#2F5233] flex items-center justify-center shrink-0 border border-[#7FA173]/30">
                   <Clock className="w-5 h-5 text-[#2F5233]" />
@@ -89,7 +89,7 @@ export default function ClinicLocation() {
           </div>
 
           {/* Right Column: Directional Map Card */}
-          <div className="lg:col-span-6 bg-gradient-to-br from-white to-[#FAF6EC] rounded-2xl p-6 sm:p-8 border border-[#2F5233]/15 shadow-sm flex flex-col justify-between relative overflow-hidden">
+          <div className="lg:col-span-6 bg-gradient-to-br from-white to-[#FAF6EC] rounded-2xl p-6 sm:p-8 border border-[#2F5233]/15 shadow-sm flex flex-col justify-between relative overflow-hidden h-full">
             
             {/* Top Tag */}
             <div className="space-y-4">

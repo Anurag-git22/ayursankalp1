@@ -138,7 +138,7 @@ export default function Hero() {
               </div>
 
               {/* Floating Stat Badges - Neatly Positioned & Fully Layered on Top (z-20) */}
-              <div className="absolute -top-3 -left-2 sm:-top-4 sm:-left-4 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl shadow-[#2F5233]/10 border border-[#2F5233]/15 flex items-center gap-3 transition-transform hover:scale-105">
+              <div className="absolute -top-4 -left-4 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl shadow-[#2F5233]/10 border border-[#2F5233]/15 flex items-center gap-3 transition-transform hover:scale-105">
                 <div className="w-8 h-8 rounded-xl bg-[#EAF2E8] flex items-center justify-center text-[#2F5233] shrink-0 border border-[#7FA173]/30">
                   <ShieldCheck className="w-4 h-4 text-[#2F5233]" />
                 </div>
@@ -148,7 +148,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-4 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl shadow-[#2F5233]/10 border border-[#2F5233]/15 flex items-center gap-3 transition-transform hover:scale-105">
+              <div className="absolute -bottom-4 -right-4 z-20 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl shadow-[#2F5233]/10 border border-[#2F5233]/15 flex items-center gap-3 transition-transform hover:scale-105">
                 <div className="w-8 h-8 rounded-xl bg-[#FAF6EC] flex items-center justify-center text-[#C08A28] shrink-0 border border-[#C08A28]/30">
                   <HeartPulse className="w-4 h-4 text-[#C08A28]" />
                 </div>
