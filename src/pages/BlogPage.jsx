@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BLOG_ARTICLES } from '../data/blogData';
-import { useLanguage } from '../context/LanguageContext';
 import { 
   BookOpen, 
   Clock, 
@@ -11,12 +10,10 @@ import {
   ChevronUp, 
   Sparkles, 
   ArrowRight,
-  CheckCircle2,
-  Share2
+  CheckCircle2
 } from 'lucide-react';
 
 export default function BlogPage() {
-  const { language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [expandedArticleId, setExpandedArticleId] = useState(null);
 
@@ -46,15 +43,13 @@ export default function BlogPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-[#2F5233] bg-[#EAF2E8] px-3.5 py-1 rounded-full border border-[#7FA173]/30">
               <BookOpen className="w-3.5 h-3.5 text-[#C08A28]" />
-              <span>{language === 'mr' ? 'आयुर्वेद ज्ञान व जीवनशैली' : 'Clinical Wisdom & Lifestyle'}</span>
+              <span>Clinical Wisdom & Lifestyle</span>
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22] mt-3">
-              {language === 'mr' ? 'आयुर्वेद टिप्स आणि आरोग्य ब्लॉग' : 'Ayurveda Tips & Lifestyle Guide'}
+              Ayurveda Tips & Lifestyle Guide
             </h1>
             <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-3 leading-relaxed">
-              {language === 'mr'
-                ? 'डॉ. ऋतुराज कदम यांच्या अनुभवातून संकलित केलेले सोपे, व्यावहारिक व शास्त्रीय आयुर्वेदिक मार्गदर्शन.'
-                : 'Evidence-informed Ayurvedic insights, seasonal routines, and practical metabolic advice written by Dr. Ruturaj Kadam to support your daily wellness journey.'}
+              Evidence-informed Ayurvedic insights, seasonal routines, and practical metabolic advice written by Dr. Ruturaj Kadam to support your daily wellness journey.
             </p>
           </div>
         </div>
@@ -185,7 +180,7 @@ export default function BlogPage() {
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2F5233] hover:text-[#C08A28] transition-colors cursor-pointer py-1"
                           aria-expanded={isExpanded}
                         >
-                          <span>{isExpanded ? (language === 'mr' ? 'कमी करा' : 'Collapse Article') : (language === 'mr' ? 'संपूर्ण लेख वाचा' : 'Read Full Article')}</span>
+                          <span>{isExpanded ? 'Collapse Article' : 'Read Full Article'}</span>
                           {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                         </button>
 
@@ -200,7 +195,7 @@ export default function BlogPage() {
               })}
             </div>
 
-            {/* Bottom Disclaimer & Newsletter/Advice Note */}
+            {/* Bottom Disclaimer & Consultation Prompt */}
             <div className="mt-12 text-center p-6 rounded-2xl bg-white/70 border border-[#2F5233]/10 text-xs text-[#1F2E22]/70 font-sans max-w-2xl mx-auto space-y-2">
               <p className="font-medium text-[#1F2E22]">
                 <strong>Clinical Note:</strong> Ayurvedic principles and dietary adjustments work best when personalized to your body constitution (Prakriti).

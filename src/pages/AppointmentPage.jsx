@@ -3,12 +3,10 @@ import { useSearchParams } from 'react-router-dom';
 import AppointmentForm from '../components/AppointmentForm';
 import ClinicLocation from '../components/ClinicLocation';
 import FAQ from '../components/FAQ';
-import { useLanguage } from '../context/LanguageContext';
 
 export default function AppointmentPage() {
   const [searchParams] = useSearchParams();
   const specialtyFromUrl = searchParams.get('specialty');
-  const { language } = useLanguage();
 
   return (
     <div className="relative">
@@ -18,12 +16,10 @@ export default function AppointmentPage() {
         <div className="bg-[#F5EFE0]/60 border-b border-[#2F5233]/10 py-8 sm:py-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22]">
-              {language === 'mr' ? 'तपासणी वेळ निश्चित करा' : 'Schedule a Consultation'}
+              Schedule a Consultation
             </h1>
             <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-2 max-w-2xl">
-              {language === 'mr'
-                ? 'डॉ. ऋतुराज कदम यांच्यासोबत औंध (पुणे) क्लिनिकमध्ये थेट भेट किंवा सुरक्षित ऑनलाइन व्हिडिओ सल्लामसलत.'
-                : 'Book an in-clinic consultation with Dr. Ruturaj Kadam at our Aundh, Pune clinic or reserve an online video session.'}
+              Book an in-clinic consultation with Dr. Ruturaj Kadam at our Aundh, Pune clinic or reserve an online video session.
             </p>
           </div>
         </div>

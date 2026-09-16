@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import LogoWatermark from './components/LogoWatermark';
 import WhatsAppButton from './components/WhatsAppButton';
-import { LanguageProvider } from './context/LanguageContext';
 
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -23,7 +22,7 @@ function PageContent() {
       {/* Centered Logo Watermark - Appears on all pages with 6% opacity */}
       <LogoWatermark />
 
-      {/* Shared Navbar across all pages with English/Marathi switch */}
+      {/* Shared Navbar across all pages */}
       <Navbar />
 
       {/* Multipage Routes with subtle page-transition fade */}
@@ -53,11 +52,9 @@ function PageContent() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <PageContent />
-      </BrowserRouter>
-    </LanguageProvider>
+    <BrowserRouter>
+      <ScrollToTop />
+      <PageContent />
+    </BrowserRouter>
   );
 }

@@ -2,12 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CLINIC_INFO } from '../data/clinicData';
 import logoMark from '../assets/logo-mark.png';
-import { useLanguage } from '../context/LanguageContext';
 import { Sparkles, Calendar, ShieldCheck, HeartPulse, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export default function Hero() {
-  const { language, t } = useLanguage();
-
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#FAF6EC] via-[#F5EFE0] to-[#FAF6EC] pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-[#2F5233]/10">
       
@@ -20,30 +17,30 @@ export default function Hero() {
             {/* Tagline Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2F5233]/10 border border-[#2F5233]/15 text-[#2F5233] text-xs font-semibold tracking-wide">
               <Sparkles className="w-3.5 h-3.5 text-[#C08A28]" />
-              <span>{t.hero.badge}</span>
+              <span>{CLINIC_INFO.bannerTagline}</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C08A28]" />
-              <span className="text-[#1F2E22]/80">{t.hero.location}</span>
+              <span className="text-[#1F2E22]/80">Aundh, Pune</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#1F2E22] leading-[1.14] tracking-tight">
-              {t.hero.headlineLine1} <br />
-              <span className="text-[#2F5233] italic font-normal">{t.hero.headlineHighlight}</span> <br />
-              {t.hero.headlineLine2}
+              Evidence-Informed <br />
+              <span className="text-[#2F5233] italic font-normal">Classical Ayurveda</span> <br />
+              for Lasting Vitality.
             </h1>
 
             {/* Approach Line */}
             <p className="text-base sm:text-lg text-[#2F5233] font-medium font-serif italic flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span>{language === 'mr' ? 'पुराव्यावर आधारित चिकित्सा' : 'Evidence-Informed Care'}</span>
+              <span>Evidence-Informed Care</span>
               <span className="text-[#C08A28] font-bold">•</span>
-              <span>{language === 'mr' ? 'वैयक्तिक उपचार' : 'Personalized Treatment'}</span>
+              <span>Personalized Treatment</span>
               <span className="text-[#C08A28] font-bold">•</span>
-              <span>{language === 'mr' ? 'जीवनशैली औषध' : 'Lifestyle Medicine'}</span>
+              <span>Lifestyle Medicine</span>
             </p>
 
             {/* Subtext description */}
             <p className="text-sm sm:text-base text-[#1F2E22]/80 max-w-2xl leading-relaxed font-sans">
-              {t.hero.subhead}
+              Led by <strong>{CLINIC_INFO.doctor.name}</strong>, AyurSankalpa Clinic combines deep pulse diagnostics (Nadi Pariksha), tailored herbal rasayanas, and metabolic lifestyle medicine to resolve root causes without perpetual dependency.
             </p>
 
             {/* Doctor Credentials Chip */}
@@ -71,7 +68,7 @@ export default function Hero() {
                 className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#2F5233] text-[#FAF6EC] text-base font-semibold shadow-lg shadow-[#2F5233]/25 hover:bg-[#1E3721] active:scale-[0.98] transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-[#2F5233]"
               >
                 <Calendar className="w-4 h-4 text-[#C08A28] group-hover:scale-110 transition-transform" />
-                <span>{t.hero.bookBtn}</span>
+                <span>Book Clinic Consultation</span>
                 <ArrowRight className="w-4 h-4 text-[#FAF6EC]/80 group-hover:translate-x-1 transition-transform" />
               </Link>
 
@@ -79,7 +76,7 @@ export default function Hero() {
                 to="/specialties"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#FAF6EC] border border-[#2F5233]/25 text-[#1F2E22] text-base font-medium hover:bg-[#EAF2E8] hover:border-[#2F5233]/40 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[#2F5233]"
               >
-                <span>{t.hero.exploreBtn}</span>
+                <span>Explore 13 Specialities</span>
               </Link>
             </div>
 
@@ -87,15 +84,15 @@ export default function Hero() {
             <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-[#1F2E22]/80">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#7FA173] shrink-0" />
-                <span>{t.hero.trustNadi}</span>
+                <span>In-Depth Nadi & Dosha Pariksha</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#7FA173] shrink-0" />
-                <span>{t.hero.trustHerbs}</span>
+                <span>Standardized Classical Formulations</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#7FA173] shrink-0" />
-                <span>{t.hero.trustTime}</span>
+                <span>Unhurried 45-Min Consultations</span>
               </div>
             </div>
 
@@ -141,8 +138,8 @@ export default function Hero() {
                   <ShieldCheck className="w-4 h-4 text-[#2F5233]" />
                 </div>
                 <div className="text-xs leading-tight">
-                  <span className="font-bold text-[#2F5233] block">{t.hero.classicalTag}</span>
-                  <span className="text-[10px] text-[#1F2E22]/65 font-medium">{t.hero.classicalSub}</span>
+                  <span className="font-bold text-[#2F5233] block">Classical Chikitsa</span>
+                  <span className="text-[10px] text-[#1F2E22]/65 font-medium">Authentic Ayurveda</span>
                 </div>
               </div>
 
@@ -151,8 +148,8 @@ export default function Hero() {
                   <HeartPulse className="w-4 h-4 text-[#C08A28]" />
                 </div>
                 <div className="text-xs leading-tight">
-                  <span className="font-bold text-[#2F5233] block">{t.hero.evidenceTag}</span>
-                  <span className="text-[10px] text-[#1F2E22]/65 font-medium">{t.hero.evidenceSub}</span>
+                  <span className="font-bold text-[#2F5233] block">Evidence Informed</span>
+                  <span className="text-[10px] text-[#1F2E22]/65 font-medium">Clinical Precision</span>
                 </div>
               </div>
 

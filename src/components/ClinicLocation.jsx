@@ -1,11 +1,9 @@
 import React from 'react';
 import { CLINIC_INFO } from '../data/clinicData';
 import { MapPin, Phone, Clock, ExternalLink, Check, Compass, Navigation } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
 
 export default function ClinicLocation() {
   const { address, hours, phone, phoneFormatted, mapEmbedUrl } = CLINIC_INFO;
-  const { language } = useLanguage();
 
   return (
     <section id="location" className="py-16 sm:py-24 bg-[#FAF6EC] border-b border-[#2F5233]/10">
@@ -14,15 +12,13 @@ export default function ClinicLocation() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-14">
           <span className="text-xs font-semibold uppercase tracking-widest text-[#2F5233] bg-[#EAF2E8] px-3.5 py-1 rounded-full border border-[#7FA173]/30">
-            {language === 'mr' ? 'क्लिनिक भेट व पत्ता' : 'Visit AyurSankalpa'}
+            Visit AyurSankalpa
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22] mt-3">
-            {language === 'mr' ? 'क्लिनिक स्थान व वेळ' : 'Clinic Location & Hours'}
+            Clinic Location & Hours
           </h2>
           <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-2">
-            {language === 'mr'
-              ? 'औंध, पुणे येथे सीझन्स रोडवर, बाणेर, शिवाजीनगर व पिंपळे सौदागर येथून सहज पोहोचता येणारे मध्यवर्ती स्थान.'
-              : 'Centrally situated in Aundh, Pune with convenient access from Baner, Shivajinagar, and Pimple Saudagar.'}
+            Centrally situated in Aundh, Pune with convenient access from Baner, Shivajinagar, and Pimple Saudagar.
           </p>
         </div>
 
@@ -81,7 +77,7 @@ export default function ClinicLocation() {
                   <Clock className="w-5 h-5 text-[#2F5233]" />
                 </div>
                 <h3 className="font-serif font-bold text-lg text-[#1F2E22]">
-                  {language === 'mr' ? 'तपासणीच्या वेळा' : 'Consultation Timings'}
+                  Consultation Timings
                 </h3>
               </div>
 

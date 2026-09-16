@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SPECIALTIES } from '../data/clinicData';
-import { useLanguage } from '../context/LanguageContext';
 import { 
   Activity, 
   Flame, 
@@ -21,7 +20,6 @@ import {
 
 export default function Specialties({ onSelectSpecialty }) {
   const navigate = useNavigate();
-  const { language, t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedCardId, setExpandedCardId] = useState(null);
@@ -80,15 +78,13 @@ export default function Specialties({ onSelectSpecialty }) {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-10">
           <span className="text-xs font-semibold tracking-wider text-[#2F5233] bg-[#EAF2E8] px-3.5 py-1 rounded-full border border-[#7FA173]/30">
-            {language === 'mr' ? '१३ प्रमुख उपचार विभाग' : 'Our 13 Clinical Specialities'}
+            Our 13 Clinical Specialities
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22] mt-3">
-            {language === 'mr' ? 'मुळापासून उपचार करणारी शास्त्रीय चिकित्सा' : 'Targeted Root-Cause Therapies'}
+            Targeted Root-Cause Therapies
           </h2>
           <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-3">
-            {language === 'mr'
-              ? 'प्राचीन संहितेवर आधारित आणि आधुनिक जीवनशैलीतील चयापचय व जुनाट विकारांवर अचूक उपचार.'
-              : 'Derived directly from classical Samhitas and fine-tuned for contemporary metabolic and lifestyle conditions. Click any specialty to view what your consultation involves.'}
+            Derived directly from classical Samhitas and fine-tuned for contemporary metabolic and lifestyle conditions. Click any specialty to view what your consultation involves.
           </p>
         </div>
 
@@ -100,7 +96,7 @@ export default function Specialties({ onSelectSpecialty }) {
             <Search className="w-4 h-4 text-[#2F5233]/60 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder={language === 'mr' ? 'त्रास शोधा (उदा. मधुमेह, ॲसिडिटी, थायरॉईड, पाठदुखी)...' : 'Search condition (e.g., Diabetes, IBS, Thyroid, Back Pain, PCOS)...'}
+              placeholder="Search condition (e.g., Diabetes, IBS, Thyroid, Back Pain, PCOS)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-12 py-2.5 rounded-full bg-white border border-[#2F5233]/20 text-sm text-[#1F2E22] placeholder:text-[#1F2E22]/50 focus-visible:ring-2 focus-visible:ring-[#2F5233] focus-visible:outline-hidden transition-all shadow-xs"
@@ -222,7 +218,7 @@ export default function Specialties({ onSelectSpecialty }) {
                     >
                       <span className="flex items-center gap-1.5">
                         <Stethoscope className="w-3.5 h-3.5 text-[#C08A28]" />
-                        <span>{language === 'mr' ? 'तपासणीत काय घडते?' : 'What Consultation Involves'}</span>
+                        <span>What Consultation Involves</span>
                       </span>
                       {isExpanded ? (
                         <ChevronUp className="w-4 h-4 text-[#C08A28]" />
@@ -251,7 +247,7 @@ export default function Specialties({ onSelectSpecialty }) {
                     onClick={() => handleBookCondition(item.title)}
                     className="inline-flex items-center gap-1 text-xs font-bold text-[#2F5233] hover:text-[#C08A28] transition-colors py-1 cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2F5233] rounded"
                   >
-                    <span>{language === 'mr' ? 'या त्रासासाठी वेळ आरक्षित करा' : 'Book For This Condition'}</span>
+                    <span>Book For This Condition</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
 

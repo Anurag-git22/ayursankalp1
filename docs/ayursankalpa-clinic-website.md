@@ -5,7 +5,9 @@
 - **Physician:** Dr. Ruturaj Kadam (BAMS, MD Ayurveda Pune, PGDEMS, DDM, DiH, Certified in Integrative Therapies USA)
 - **Taglines:** *"Holistic Ayurvedic Care for Modern Living"* & *"Healing with Clarity & Care"*
 - **Location:** 1st Floor, Saket Apartment, Seasons Rd, next to Takalkar Classes, Shambhu Vihar Society, Aundh, Pune-411007
-- **Contact:** 9028536848 | `@ayursankalpa` | `https://wa.me/919028536848`
+- **Contact:** 9028536848 | `@ayursankalpa`
+- **WhatsApp Testing & Direct Chat:** `8291537788` | `https://wa.me/918291537788`
+- **Language:** English Only (clean, accessible UI)
 - **Social Media:**
   - LinkedIn: https://www.linkedin.com/in/dr-ruturaj-kadam-7639a9137
   - Instagram: https://www.instagram.com/ayursankalpa
@@ -16,7 +18,7 @@
 - **Canonical Logo Mark:** Transparent background green gradient lotus/mandala (`src/assets/logo-mark.png` and `public/logo-mark.png`).
 - **Favicon & Touch Icon:** `/logo-mark.png` and `/favicon.svg`.
 - **Placement Rules:**
-  - Header / Navigation: Small icon next to serif wordmark `AYURSANKALPA CLINIC` with English / Marathi language toggle.
+  - Header / Navigation: Small icon next to serif wordmark `AYURSANKALPA CLINIC`.
   - Footer: Larger emblem version with full typography and embedded Google Maps iframe.
   - **Centered Background Watermark (Site-Wide):** Single `<LogoWatermark />` component placed in `App.jsx` appears consistently on all pages. Fixed to viewport center (`position: fixed`), stays in place as user scrolls. 700px max size, 6% opacity. Includes `pointer-events: none` and `aria-hidden="true"` for full accessibility. Static design (no animation), provides subtle visual texture without compromising text readability. Uses `mix-blend-mode: multiply` for elegant integration with page backgrounds.
   - Confirmation State: Small centered mark upon simulated form submission.
@@ -56,8 +58,7 @@
 ---
 
 ## 4. Technical, SEO & Accessibility Polish Pass
-- **Marathi / English Toggle:** Lightweight dictionary in `src/data/translations.js` managed via `LanguageContext` with `localStorage` persistence, toggling key navigation, hero headings, form fields, and buttons.
-- **WhatsApp Click-to-Chat:** Floating action button (`src/components/WhatsAppButton.jsx`) and footer links using `https://wa.me/919028536848`.
+- **WhatsApp Click-to-Chat:** Floating action button (`src/components/WhatsAppButton.jsx`), appointment confirmation, and footer links configured with testing number `8291537788` (`https://wa.me/918291537788`).
 - **SEO & Schema.org:**
   - Complete `<meta>` tags, canonical link, and Open Graph tags for WhatsApp/Instagram sharing.
   - JSON-LD structured data in `index.html` for `LocalBusiness`, `Physician`, and `MedicalClinic` with geo coordinates (18.55666, 73.80496), operating hours, and doctor credentials.

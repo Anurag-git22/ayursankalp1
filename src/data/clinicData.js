@@ -33,7 +33,9 @@ export const CLINIC_INFO = {
   mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.385368481358!2d73.80496157519253!3d18.556662782544284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf38ec4cf1a7%3A0xe54d6e902b9ffc68!2sSaket%20Apartment%2C%20Seasons%20Rd%2C%20Shambhu%20Vihar%20Society%2C%20Sanewadi%2C%20Aundh%2C%20Pune%2C%20Maharashtra%20411007!5e0!3m2!1sen!2sin!4v1710500000000!5m2!1sen!2sin",
   phone: "9028536848",
   phoneFormatted: "+91 90285 36848",
-  whatsappUrl: "https://wa.me/919028536848",
+  whatsappNumber: "8291537788",
+  whatsappFormatted: "+91 82915 37788",
+  whatsappUrl: "https://wa.me/918291537788",
   instagram: "@ayursankalpa",
   hours: [
     { days: "Monday - Saturday", morning: "09:30 AM – 01:30 PM", evening: "05:00 PM – 08:30 PM" },

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { FAQ_LIST, CLINIC_INFO } from '../data/clinicData';
 import { ChevronDown, HelpCircle, MessageSquare, Phone } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
-  const { language } = useLanguage();
 
   const toggleFAQ = (idx) => {
     setOpenIndex(openIndex === idx ? null : idx);
@@ -20,15 +18,13 @@ export default function FAQ() {
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-[#2F5233] bg-[#EAF2E8] px-3.5 py-1 rounded-full border border-[#7FA173]/30">
             <HelpCircle className="w-3.5 h-3.5 text-[#C08A28]" />
-            <span>{language === 'mr' ? 'वारंवार विचारले जाणारे प्रश्न' : 'Frequently Answered'}</span>
+            <span>Frequently Answered</span>
           </span>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1F2E22] mt-3">
-            {language === 'mr' ? 'तपासणी व उपचारांविषयी शंका निरसन' : 'Patient Questions & Clinical Clarity'}
+            Patient Questions & Clinical Clarity
           </h2>
           <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-2 max-w-xl mx-auto">
-            {language === 'mr' 
-              ? 'पहिल्या भेटीत काय घडते, आहाराचे नियम, पंचकर्म व उपचारांचा कालावधी याविषयी संपूर्ण स्पष्टता.'
-              : 'Clear answers on what to expect during your first consultation, diet planning, Panchakarma therapies, and treatment timelines.'}
+            Clear answers on what to expect during your first consultation, diet planning, Panchakarma therapies, and treatment timelines.
           </p>
         </div>
 
@@ -72,18 +68,16 @@ export default function FAQ() {
         <div className="mt-10 p-5 rounded-2xl bg-white/80 border border-[#2F5233]/15 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left text-xs text-[#1F2E22]/80 font-sans">
             <span className="font-bold text-[#1F2E22] block">
-              {language === 'mr' ? 'इतर काही प्रश्न आहेत का?' : 'Have a specific clinical question?'}
+              Have a specific clinical question?
             </span>
             <span>
-              {language === 'mr' 
-                ? 'डॉ. ऋतुराज कदम यांच्याशी व्हॉट्सॲपवर संपर्क करा किंवा थेट कॉल करा.'
-                : 'Dr. Ruturaj Kadam and our clinic desk are happy to clarify any doubts.'}
+              Dr. Ruturaj Kadam and our clinic desk are happy to clarify any doubts.
             </span>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
             <a
-              href={`https://wa.me/919028536848?text=${whatsappMessage}`}
+              href={`https://wa.me/918291537788?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#25D366] text-white text-xs font-semibold hover:bg-[#1EBE5D] transition-colors"

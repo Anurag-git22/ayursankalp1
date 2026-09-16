@@ -1,19 +1,9 @@
 import React from 'react';
 import { TESTIMONIALS } from '../data/testimonialsData';
 import { Star, Quote, HeartHandshake, CheckCircle2 } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
 
 export default function Testimonials({ variant = 'home' }) {
-  const { language } = useLanguage();
   const displayItems = variant === 'home' ? TESTIMONIALS.slice(0, 3) : TESTIMONIALS;
-
-  const sectionTitle = language === 'mr' 
-    ? 'रुग्णांचे मनोगत व आरोग्य पुनर्प्राप्ती' 
-    : 'Patient Experiences & Healing Journeys';
-    
-  const sectionSub = language === 'mr'
-    ? 'आयुर्संकल्प क्लिनिकमध्ये उपचार घेतलेल्या रुग्णांचे प्रत्यक्ष अनुभव आणि जीवनशैलीतील सकारात्मक बदल.'
-    : 'Real voices of Pune residents who found lasting root-cause relief, restored vitality, and metabolic balance through personalized Ayurvedic care.';
 
   return (
     <section className="py-16 sm:py-20 bg-gradient-to-b from-[#FAF6EC] via-[#F6EFE0] to-[#FAF6EC] border-b border-[#2F5233]/10 relative overflow-hidden">
@@ -23,13 +13,13 @@ export default function Testimonials({ variant = 'home' }) {
         <div className="max-w-3xl mx-auto text-center mb-12">
           <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-[#2F5233] bg-[#EAF2E8] px-3.5 py-1 rounded-full border border-[#7FA173]/30">
             <HeartHandshake className="w-3.5 h-3.5 text-[#C08A28]" />
-            <span>{language === 'mr' ? 'विश्वास आणि परिणाम' : 'Trust & Healing'}</span>
+            <span>Trust & Healing</span>
           </span>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1F2E22] mt-3">
-            {sectionTitle}
+            Patient Experiences & Healing Journeys
           </h2>
           <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-2.5 leading-relaxed">
-            {sectionSub}
+            Real voices of Pune residents who found lasting root-cause relief, restored vitality, and metabolic balance through personalized Ayurvedic care.
           </p>
         </div>
 

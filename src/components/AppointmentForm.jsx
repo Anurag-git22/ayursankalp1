@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SPECIALTIES, CLINIC_INFO } from '../data/clinicData';
 import logoMark from '../assets/logo-mark.png';
-import { useLanguage } from '../context/LanguageContext';
 import { 
   Calendar, 
   Clock, 
@@ -15,13 +14,10 @@ import {
   ShieldCheck,
   RefreshCw,
   ArrowRight,
-  Printer,
   MessageSquare
 } from 'lucide-react';
 
 export default function AppointmentForm({ preselectedSpecialty }) {
-  const { language, t } = useLanguage();
-
   const [formData, setFormData] = useState({
     consultationType: 'in-clinic', // 'in-clinic' | 'video'
     specialty: preselectedSpecialty || 'Diabetes & Prediabetes Care',
@@ -64,11 +60,10 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
   const validate = () => {
     const errs = {};
-    const f = t.form;
 
     // Full name validation
     if (!formData.fullName.trim()) {
-      errs.fullName = f.errName || 'Please provide patient full name';
+      errs.fullName = 'Please provide patient full name';
     } else if (formData.fullName.trim().length < 2) {
       errs.fullName = 'Full name must be at least 2 characters';
     }
@@ -77,22 +72,22 @@ export default function AppointmentForm({ preselectedSpecialty }) {
     const cleanPhone = formData.phone.replace(/[\s\-()]/g, '');
     const phoneRegex = /^(\+91|91)?[6-9]\d{9}$/;
     if (!formData.phone.trim()) {
-      errs.phone = f.errPhone || 'Please provide a valid contact number';
+      errs.phone = 'Please provide a valid contact number';
     } else if (!phoneRegex.test(cleanPhone)) {
-      errs.phone = f.errPhone || 'Enter a valid 10-digit mobile number';
+      errs.phone = 'Enter a valid 10-digit mobile number';
     }
 
     // Optional email validation
     if (formData.email.trim()) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email.trim())) {
-        errs.email = f.errEmail || 'Enter a valid email address';
+        errs.email = 'Enter a valid email address';
       }
     }
 
     // Date validation
     if (!formData.date) {
-      errs.date = f.errDate || 'Please pick a consultation date';
+      errs.date = 'Please pick a consultation date';
     } else {
       const selected = new Date(formData.date);
       const today = new Date();
@@ -104,7 +99,7 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
     // Time slot validation
     if (!formData.timeSlot) {
-      errs.timeSlot = f.errSlot || 'Please select a preferred slot';
+      errs.timeSlot = 'Please select a preferred slot';
     }
 
     setErrors(errs);
@@ -152,13 +147,13 @@ export default function AppointmentForm({ preselectedSpecialty }) {
         {/* Header */}
         <div className="text-center mb-10">
           <span className="text-xs font-semibold uppercase tracking-widest text-[#2F5233] bg-[#EAF2E8] px-3.5 py-1 rounded-full border border-[#7FA173]/30">
-            {t.form.tag}
+            Consultation Booking
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22] mt-3">
-            {t.form.title}
+            Schedule Your Appointment
           </h2>
           <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-2">
-            {t.form.subtitle}
+            Direct clinical consultation with Dr. Ruturaj Kadam at Aundh, Pune or via Secure Video.
           </p>
         </div>
 
@@ -184,20 +179,20 @@ export default function AppointmentForm({ preselectedSpecialty }) {
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#2F5233] bg-[#EAF2E8] px-3 py-1 rounded-full border border-[#7FA173]/30">
                   <CheckCircle className="w-3.5 h-3.5 text-[#2F5233]" />
-                  <span>{t.form.successBadge}</span>
+                  <span>Consultation Request Confirmed</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#1F2E22]">
-                  {t.form.successTitle}
+                  Thanks — We'll Be In Touch
                 </h3>
                 <p className="text-xs sm:text-sm text-[#1F2E22]/70 max-w-lg mx-auto font-sans leading-relaxed">
-                  {t.form.successDesc}
+                  Your consultation request with Dr. Ruturaj Kadam has been recorded. Our front desk will contact you shortly on your registered number to confirm the final slot.
                 </p>
               </div>
 
               {/* Summary Receipt Box */}
               <div className="max-w-lg mx-auto bg-[#FAF6EC] p-6 rounded-2xl border border-[#2F5233]/15 text-left space-y-4 text-sm font-sans">
                 <div className="flex justify-between items-center pb-3 border-b border-[#2F5233]/10">
-                  <span className="text-xs text-[#1F2E22]/60">{t.form.refLabel}</span>
+                  <span className="text-xs text-[#1F2E22]/60">Booking Reference</span>
                   <span className="font-mono font-bold text-[#2F5233] bg-[#EAF2E8] px-3 py-0.5 rounded text-xs border border-[#7FA173]/30">
                     {bookingRef}
                   </span>
@@ -205,27 +200,27 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <span className="text-xs text-[#1F2E22]/60 block">{t.form.patientLabel}</span>
+                    <span className="text-xs text-[#1F2E22]/60 block">Patient Name</span>
                     <span className="font-semibold text-[#1F2E22]">{formData.fullName}</span>
                   </div>
                   <div>
-                    <span className="text-xs text-[#1F2E22]/60 block">{t.form.contactLabel}</span>
+                    <span className="text-xs text-[#1F2E22]/60 block">Contact Number</span>
                     <span className="font-semibold text-[#1F2E22]">{formData.phone}</span>
                   </div>
                   <div>
-                    <span className="text-xs text-[#1F2E22]/60 block">{t.form.modeLabel}</span>
+                    <span className="text-xs text-[#1F2E22]/60 block">Consultation Mode</span>
                     <span className="font-semibold text-[#2F5233] capitalize">
                       {formData.consultationType === 'in-clinic' ? 'In-Clinic (Aundh, Pune)' : 'Online Video Consultation'}
                     </span>
                   </div>
                   <div>
-                    <span className="text-xs text-[#1F2E22]/60 block">{t.form.dateTimeLabel}</span>
+                    <span className="text-xs text-[#1F2E22]/60 block">Date & Slot</span>
                     <span className="font-semibold text-[#1F2E22]">{formData.date} at {formData.timeSlot}</span>
                   </div>
                 </div>
 
                 <div className="pt-2 border-t border-[#2F5233]/10">
-                  <span className="text-xs text-[#1F2E22]/60 block">{t.form.concernLabel}</span>
+                  <span className="text-xs text-[#1F2E22]/60 block">Primary Concern</span>
                   <span className="font-semibold text-[#1F2E22]">{formData.specialty}</span>
                 </div>
 
@@ -233,12 +228,12 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                 <div className="p-4 rounded-xl bg-white border border-[#2F5233]/10 text-xs text-[#1F2E22]/85 space-y-2">
                   <div className="font-semibold text-[#2F5233] flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-[#C08A28]" />
-                    <span>{t.form.preparationTitle}</span>
+                    <span>Consultation Day Guidelines:</span>
                   </div>
                   <ul className="space-y-1 text-[11px] text-[#1F2E22]/75">
-                    <li>• {t.form.preparationTip1}</li>
-                    <li>• {t.form.preparationTip2}</li>
-                    <li>• {t.form.preparationTip3}</li>
+                    <li>• Please arrive 10 minutes prior to your scheduled time.</li>
+                    <li>• Bring your recent blood tests, medical files, and current prescriptions.</li>
+                    <li>• Avoid heavy meals for 2 hours before your pulse (Nadi Pariksha) assessment.</li>
                   </ul>
                 </div>
 
@@ -260,11 +255,12 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#2F5233] text-[#FAF6EC] font-semibold text-xs hover:bg-[#1E3721] transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2F5233]"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
-                  <span>{t.form.bookAnother}</span>
+                  <span>Book Another Appointment</span>
                 </button>
 
+                {/* Direct WhatsApp Checking Button using 8291537788 */}
                 <a
-                  href={`https://wa.me/919028536848?text=${encodeURIComponent(`Hello Dr. Kadam, I have booked reference ${bookingRef} for ${formData.fullName} on ${formData.date}.`)}`}
+                  href={`https://wa.me/918291537788?text=${encodeURIComponent(`Hello, I have booked reference ${bookingRef} for ${formData.fullName} on ${formData.date}.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] text-white font-semibold text-xs hover:bg-[#1EBE5D] transition-all shadow-xs"
@@ -298,8 +294,8 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                       <MapPin className="w-4 h-4 text-[#C08A28]" />
                     </div>
                     <div>
-                      <div className="font-bold text-sm text-[#1F2E22]">{t.form.inClinic}</div>
-                      <div className="text-xs text-[#1F2E22]/65">{t.form.inClinicLoc}</div>
+                      <div className="font-bold text-sm text-[#1F2E22]">In-Clinic Consultation</div>
+                      <div className="text-xs text-[#1F2E22]/65">Aundh, Pune</div>
                     </div>
                   </button>
 
@@ -316,8 +312,8 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                       <Video className="w-4 h-4 text-[#C08A28]" />
                     </div>
                     <div>
-                      <div className="font-bold text-sm text-[#1F2E22]">{t.form.videoCall}</div>
-                      <div className="text-xs text-[#1F2E22]/65">{t.form.videoSub}</div>
+                      <div className="font-bold text-sm text-[#1F2E22]">Online Video Session</div>
+                      <div className="text-xs text-[#1F2E22]/65">Pan-India & Global</div>
                     </div>
                   </button>
                 </div>
@@ -326,7 +322,7 @@ export default function AppointmentForm({ preselectedSpecialty }) {
               {/* Specialty Selector */}
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#1F2E22]/70 mb-2">
-                  2. {t.form.specialtyLabel}
+                  2. Health Concern / Clinical Focus
                 </label>
                 <select
                   value={formData.specialty}
@@ -347,7 +343,7 @@ export default function AppointmentForm({ preselectedSpecialty }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-[#1F2E22]/70 mb-2">
-                    3. {t.form.dateLabel}
+                    3. Preferred Consultation Date *
                   </label>
                   <input
                     type="date"
@@ -364,7 +360,7 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-[#1F2E22]/70 mb-2">
-                    4. {t.form.timeLabel}
+                    4. Preferred Time Slot *
                   </label>
                   <select
                     value={formData.timeSlot}
@@ -397,11 +393,11 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs text-[#1F2E22]/70 mb-1 font-medium">
-                      {t.form.fullNameLabel}
+                      Patient Full Name *
                     </label>
                     <input
                       type="text"
-                      placeholder={t.form.fullNamePlaceholder}
+                      placeholder="e.g., Anuradha Sharma"
                       value={formData.fullName}
                       onChange={(e) => {
                         setFormData({ ...formData, fullName: e.target.value });
@@ -418,11 +414,11 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
                   <div>
                     <label className="block text-xs text-[#1F2E22]/70 mb-1 font-medium">
-                      {t.form.phoneLabel}
+                      Phone Number *
                     </label>
                     <input
                       type="tel"
-                      placeholder={t.form.phonePlaceholder}
+                      placeholder="10-digit mobile number (e.g., 98220 12345)"
                       value={formData.phone}
                       onChange={(e) => {
                         setFormData({ ...formData, phone: e.target.value });
@@ -441,11 +437,11 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="sm:col-span-2">
                     <label className="block text-xs text-[#1F2E22]/70 mb-1 font-medium">
-                      {t.form.emailLabel}
+                      Email Address (Optional)
                     </label>
                     <input
                       type="email"
-                      placeholder={t.form.emailPlaceholder}
+                      placeholder="e.g., name@example.com"
                       value={formData.email}
                       onChange={(e) => {
                         setFormData({ ...formData, email: e.target.value });
@@ -462,11 +458,11 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
                   <div>
                     <label className="block text-xs text-[#1F2E22]/70 mb-1 font-medium">
-                      {t.form.ageLabel}
+                      Age (Optional)
                     </label>
                     <input
                       type="number"
-                      placeholder={t.form.agePlaceholder}
+                      placeholder="e.g., 38"
                       value={formData.age}
                       onChange={(e) => setFormData({ ...formData, age: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#2F5233]/20 text-sm text-[#1F2E22] focus-visible:ring-2 focus-visible:ring-[#2F5233] focus-visible:outline-hidden"
@@ -476,25 +472,25 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
                 <div>
                   <label className="block text-xs text-[#1F2E22]/70 mb-1 font-medium">
-                    {t.form.medsLabel}
+                    Currently Taking Allopathic Medications?
                   </label>
                   <select
                     value={formData.hasExistingMedications}
                     onChange={(e) => setFormData({ ...formData, hasExistingMedications: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#2F5233]/20 text-sm text-[#1F2E22] focus-visible:ring-2 focus-visible:ring-[#2F5233] focus-visible:outline-hidden"
                   >
-                    <option value="yes">{t.form.medsYes}</option>
-                    <option value="no">{t.form.medsNo}</option>
+                    <option value="yes">Yes (Bring reports/prescriptions)</option>
+                    <option value="no">No</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-xs text-[#1F2E22]/70 mb-1 font-medium">
-                    {t.form.notesLabel}
+                    Brief Notes or Symptoms (Optional)
                   </label>
                   <textarea
                     rows="3"
-                    placeholder={t.form.notesPlaceholder}
+                    placeholder="Describe symptoms, duration, prior tests, or specific health goals..."
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#2F5233]/20 text-sm text-[#1F2E22] focus-visible:ring-2 focus-visible:ring-[#2F5233] focus-visible:outline-hidden"
@@ -512,12 +508,12 @@ export default function AppointmentForm({ preselectedSpecialty }) {
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-[#FAF6EC] border-t-transparent rounded-full animate-spin" />
-                      <span>{t.form.submittingBtn}</span>
+                      <span>Confirming Appointment Slot...</span>
                     </>
                   ) : (
                     <>
                       <Calendar className="w-4 h-4 text-[#C08A28]" />
-                      <span>{t.form.submitBtn}</span>
+                      <span>Confirm Appointment Request</span>
                       <ArrowRight className="w-4 h-4 text-[#FAF6EC]/80" />
                     </>
                   )}
@@ -525,7 +521,7 @@ export default function AppointmentForm({ preselectedSpecialty }) {
 
                 <p className="text-center text-xs text-[#1F2E22]/60 mt-3 flex items-center justify-center gap-1.5 font-sans">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#7FA173]" />
-                  <span>{t.form.feeNotice}</span>
+                  <span>Clinical consultation fee payable at clinic during visit. Form is for slot reservation.</span>
                 </p>
               </div>
 

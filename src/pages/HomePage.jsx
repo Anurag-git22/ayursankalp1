@@ -4,19 +4,16 @@ import Hero from '../components/Hero';
 import TrustBadges from '../components/TrustBadges';
 import Testimonials from '../components/Testimonials';
 import { CLINIC_INFO, APPROACH_PILLARS } from '../data/clinicData';
-import { useLanguage } from '../context/LanguageContext';
 import { 
   ArrowRight, 
   Calendar, 
   ChevronRight,
   Stethoscope,
-  BookOpen,
-  Sparkles
+  BookOpen
 } from 'lucide-react';
 
 export default function HomePage() {
   const { doctor } = CLINIC_INFO;
-  const { language, t } = useLanguage();
 
   return (
     <div className="space-y-0">
@@ -32,7 +29,7 @@ export default function HomePage() {
             <div className="space-y-2 max-w-3xl">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#C08A28]">
                 <Stethoscope className="w-4 h-4 text-[#2F5233]" />
-                <span>{language === 'mr' ? 'वरिष्ठ आयुर्वेदिक चिकित्सक' : 'Senior Ayurvedic Physician'}</span>
+                <span>Senior Ayurvedic Physician</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1F2E22]">
                 {doctor.name}
@@ -41,9 +38,7 @@ export default function HomePage() {
                 {doctor.qualifications} • PGDEMS • DDM (Diabetes) • Certified in Integrative Therapies (USA)
               </p>
               <p className="text-xs sm:text-sm text-[#1F2E22]/75 leading-relaxed pt-1">
-                {language === 'mr'
-                  ? 'नाडी परीक्षा, चयापचय दुरुस्ती आणि वैयक्तिक आहार-विहाराद्वारे जुनाट व जीवनशैलीशी संबंधित विकारांवर औंध, पुणे येथे विश्वासार्ह उपचार.'
-                  : 'Combining timeless pulse diagnostics with contemporary metabolic medicine, Dr. Kadam focuses on root-cause recovery and personalized Ahara-Vihara protocols in Aundh, Pune.'}
+                Combining timeless pulse diagnostics with contemporary metabolic medicine, Dr. Kadam focuses on root-cause recovery and personalized Ahara-Vihara protocols in Aundh, Pune.
               </p>
             </div>
 
@@ -52,7 +47,7 @@ export default function HomePage() {
                 to="/about"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#EAF2E8] border border-[#7FA173]/30 text-[#2F5233] font-semibold text-sm hover:bg-[#2F5233] hover:text-[#FAF6EC] transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-[#2F5233]"
               >
-                <span>{language === 'mr' ? 'डॉक्टरांविषयी अधिक जाणून घ्या' : 'Learn More About Doctor'}</span>
+                <span>Learn More About Doctor</span>
                 <ArrowRight className="w-4 h-4 text-[#C08A28] group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -67,10 +62,10 @@ export default function HomePage() {
           
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#2F5233] bg-[#EAF2E8] px-3.5 py-1 rounded-full border border-[#7FA173]/30">
-              {language === 'mr' ? 'उपचार तत्त्वज्ञान' : 'Clinical Philosophy'}
+              Clinical Philosophy
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#1F2E22] mt-2.5">
-              {language === 'mr' ? 'शास्त्रीय उपचारांचे ३ प्रमुख स्तंभ' : '3 Pillars of Authentic Care'}
+              3 Pillars of Authentic Care
             </h2>
           </div>
 
@@ -99,7 +94,7 @@ export default function HomePage() {
                     to="/about"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2F5233] hover:text-[#C08A28] transition-colors"
                   >
-                    <span>{language === 'mr' ? 'सविस्तर वाचा' : 'Read pillar details'}</span>
+                    <span>Read pillar details</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -116,15 +111,13 @@ export default function HomePage() {
           
           <div className="text-center max-w-3xl mx-auto">
             <span className="text-xs font-semibold tracking-wider text-[#2F5233] bg-[#EAF2E8] px-3.5 py-1 rounded-full border border-[#7FA173]/30">
-              {language === 'mr' ? 'विशेष उपचार' : 'Featured Clinical Care'}
+              Featured Clinical Care
             </span>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1F2E22] mt-2.5">
-              {language === 'mr' ? 'आमचे १३ विशेष उपचार विभाग' : 'Our Specialities'}
+              Our Specialities
             </h2>
             <p className="text-sm text-[#1F2E22]/70 mt-3 max-w-2xl mx-auto leading-relaxed">
-              {language === 'mr'
-                ? 'मधुमेह, पचनसंस्थेचे आजार, थायरॉईड, सांधेदुखी व मणक्यांचे विकार यावर संहितेवर आधारित उपचार. प्रत्येक आजाराच्या लक्षणांनुसार स्वतंत्र मार्गदर्शन.'
-                : 'Classical, root-cause treatments targeting chronic metabolic, digestive, joint, and lifestyle conditions. Explore all 13 clinical specialities with detailed symptoms, protocols, and booking options.'}
+              Classical, root-cause treatments targeting chronic metabolic, digestive, joint, and lifestyle conditions. Explore all 13 clinical specialities with detailed symptoms, protocols, and booking options.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -132,7 +125,7 @@ export default function HomePage() {
                 to="/specialties"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#2F5233] text-[#FAF6EC] text-sm font-semibold hover:bg-[#1E3721] transition-all shadow-md focus-visible:ring-2 focus-visible:ring-[#2F5233]"
               >
-                <span>{language === 'mr' ? 'सर्व १३ विभाग पहा' : 'View All 13 Specialities'}</span>
+                <span>View All 13 Specialities</span>
                 <ArrowRight className="w-4 h-4 text-[#C08A28]" />
               </Link>
 
@@ -141,7 +134,7 @@ export default function HomePage() {
                 className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-white border border-[#2F5233]/20 text-[#1F2E22] text-sm font-semibold hover:bg-[#EAF2E8] transition-all"
               >
                 <BookOpen className="w-4 h-4 text-[#2F5233]" />
-                <span>{language === 'mr' ? 'आयुर्वेद टिप्स वाचा' : 'Read Ayurveda Tips'}</span>
+                <span>Read Ayurveda Tips</span>
               </Link>
             </div>
           </div>
@@ -149,7 +142,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Patient Testimonials Section (Content & Trust pass) */}
+      {/* 5. Patient Testimonials Section */}
       <Testimonials variant="home" />
 
       {/* 6. Trust Badges Strip */}
@@ -162,12 +155,10 @@ export default function HomePage() {
             {CLINIC_INFO.bannerTagline}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#FAF6EC]">
-            {language === 'mr' ? 'आपल्या आरोग्याची नवी सुरुवात करा' : 'Ready to Begin Your Healing Journey?'}
+            Ready to Begin Your Healing Journey?
           </h2>
           <p className="text-xs sm:text-sm text-[#EAF2E8]/80 max-w-xl mx-auto leading-relaxed">
-            {language === 'mr'
-              ? 'डॉ. ऋतुराज कदम यांच्यासोबत औंध क्लिनिकमध्ये सविस्तर ४५ मिनिटांची तपासणी किंवा ऑनलाइन व्हिडिओ सल्ला.'
-              : 'Schedule a comprehensive, unhurried 45-minute clinical consultation with Dr. Ruturaj Kadam at Saket Apartment, Seasons Rd, Aundh, Pune or via video.'}
+            Schedule a comprehensive, unhurried 45-minute clinical consultation with Dr. Ruturaj Kadam at Saket Apartment, Seasons Rd, Aundh, Pune or via video.
           </p>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -176,14 +167,14 @@ export default function HomePage() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#C08A28] text-[#1F2E22] font-bold text-sm hover:bg-[#FAF6EC] shadow-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-[#C08A28]"
             >
               <Calendar className="w-4 h-4 text-[#1F2E22]" />
-              <span>{language === 'mr' ? 'तपासणी वेळ आरक्षित करा' : 'Book In-Clinic or Video Consultation'}</span>
+              <span>Book In-Clinic or Video Consultation</span>
             </Link>
 
             <Link
               to="/about"
               className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl border border-[#FAF6EC]/30 text-[#FAF6EC] font-semibold text-sm hover:bg-white/10 transition-colors"
             >
-              <span>{language === 'mr' ? 'डॉ. कदम यांच्याविषयी' : 'Learn About Dr. Kadam'}</span>
+              <span>Learn About Dr. Kadam</span>
             </Link>
           </div>
         </div>
