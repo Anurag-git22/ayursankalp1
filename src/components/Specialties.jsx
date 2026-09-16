@@ -37,12 +37,11 @@ export default function Specialties({ onSelectSpecialty }) {
   ];
 
   const filteredSpecialties = SPECIALTIES.filter((item) => {
-    const matchesCategory = selectedCategory === 'All' || item.category === selectedCategory;
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (item.subtitle && item.subtitle.toLowerCase().includes(searchQuery.toLowerCase())) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.symptoms.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
+    return matchesSearch;
   });
 
   // Category Icon helper
@@ -104,23 +103,6 @@ export default function Specialties({ onSelectSpecialty }) {
                 Clear
               </button>
             )}
-          </div>
-
-          {/* Category Chips */}
-          <div className="flex items-center justify-center flex-wrap gap-2 pt-2">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`text-xs px-3.5 py-1.5 rounded-full transition-all duration-200 font-medium ${
-                  selectedCategory === category
-                    ? 'bg-[#2F5233] text-[#FAF6EC] shadow-sm font-semibold'
-                    : 'bg-white/70 text-[#1F2E22]/80 border border-[#2F5233]/15 hover:bg-[#EAF2E8] hover:text-[#2F5233]'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
           </div>
 
         </div>
@@ -228,10 +210,10 @@ export default function Specialties({ onSelectSpecialty }) {
               Dr. Ruturaj Kadam also treats complex chronic & multi-system conditions. Please book a general consultation.
             </p>
             <button
-              onClick={() => { setSearchQuery(''); setSelectedCategory('All'); }}
+              onClick={() => setSearchQuery('')}
               className="mt-4 px-4 py-2 rounded-xl bg-[#2F5233] text-[#FAF6EC] text-xs font-semibold"
             >
-              Reset Filters
+              Reset Search
             </button>
           </div>
         )}
