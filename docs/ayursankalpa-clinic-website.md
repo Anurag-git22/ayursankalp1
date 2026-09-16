@@ -6,6 +6,9 @@
 - **Taglines:** *"Holistic Ayurvedic Care for Modern Living"* & *"Healing with Clarity & Care"*
 - **Location:** 1st Floor, Saket Apartment, Seasons Rd, next to Takalkar Classes, Shambhu Vihar Society, Aundh, Pune-07
 - **Contact:** 9028536848 | `@ayursankalpa`
+- **Social Media:**
+  - LinkedIn: https://www.linkedin.com/in/dr-ruturaj-kadam-7639a9137
+  - Instagram: https://www.instagram.com/ayursankalpa
 
 ---
 
