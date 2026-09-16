@@ -67,15 +67,6 @@ export default function Specialties({ onSelectSpecialty }) {
 
   return (
     <section id="specialties" className="py-16 sm:py-24 bg-[#FAF6EC] relative">
-      
-      {/* Background delicate decorative watermark */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none opacity-5">
-        <svg viewBox="0 0 100 100" className="w-full h-full text-[#2F5233]" fill="currentColor">
-          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="1" />
-          <path d="M50 5 C55 25 65 35 75 50 C65 65 55 75 50 95 C45 75 35 65 25 50 C35 35 45 25 50 5 Z" />
-          <path d="M5 50 C25 55 35 65 50 75 C65 65 75 55 95 50 C75 45 65 35 50 25 C35 35 25 45 5 50 Z" />
-        </svg>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
