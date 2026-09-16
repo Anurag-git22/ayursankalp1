@@ -14,6 +14,7 @@
   --color-ivory: #FAF6EC;
   --color-ivory-warm: #F4EEDF;
   --color-turmeric: #C08A28;
+  --color-turmeric-dark: #8F6210;
   --color-turmeric-hover: #A7741C;
   --color-turmeric-light: #F7E7C4;
 }
@@ -44,19 +45,52 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Page Transition Fade */
+@keyframes pageFade {
+  from {
+    opacity: 0.85;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-fade {
+  animation: pageFade 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Keyboard Focus States for Accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #2F5233;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-fade {
+    animation: none !important;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Subtle background pattern */
 .bg-mandala-subtle {
   background-image: radial-gradient(rgba(47, 82, 51, 0.05) 1px, transparent 1px);
   background-size: 24px 24px;
-}
-
-/* Custom delicate borders */
-.border-forest-15 {
-  border-color: rgba(47, 82, 51, 0.15);
-}
-
-.border-turmeric-30 {
-  border-color: rgba(192, 138, 40, 0.3);
 }
 
 /* Custom scrollbar */

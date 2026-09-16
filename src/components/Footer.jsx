@@ -2,22 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { CLINIC_INFO } from '../data/clinicData';
-import { MapPin, Phone, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, ArrowUp, MessageSquare, ExternalLink, Navigation } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
+  const { language, t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const whatsappMessage = encodeURIComponent("Hello Dr. Ruturaj Kadam, I would like to inquire about an appointment at AyurSankalpa Clinic.");
+
   return (
-    <footer className="bg-[#1E3721] text-[#FAF6EC] pt-14 pb-8 border-t border-[#7FA173]/20">
+    <footer className="bg-[#1E3721] text-[#FAF6EC] pt-14 pb-8 border-t border-[#7FA173]/20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#7FA173]/20">
           
           {/* Col 1: Brand & Doctor Summary */}
-          <div className="md:col-span-6 space-y-4">
+          <div className="md:col-span-5 space-y-4">
             <div className="bg-[#FAF6EC] p-3.5 rounded-2xl inline-block shadow-md">
               <Logo size="large" />
             </div>
@@ -29,54 +34,90 @@ export default function Footer() {
             <div className="text-xs text-[#C08A28] font-serif italic">
               "{CLINIC_INFO.bannerTagline}"
             </div>
+
+            {/* Direct WhatsApp Quick Chat Pill */}
+            <div className="pt-2">
+              <a
+                href={`https://wa.me/919028536848?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#25D366]/20 border border-[#25D366]/40 text-[#FAF6EC] hover:bg-[#25D366] hover:text-white transition-all text-xs font-semibold"
+                aria-label="Contact Dr. Ruturaj Kadam on WhatsApp"
+              >
+                <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span>{language === 'mr' ? 'व्हॉट्सॲपवर संपर्क करा' : 'WhatsApp: +91 90285 36848'}</span>
+              </a>
+            </div>
           </div>
 
           {/* Col 2: Navigation Links */}
           <div className="md:col-span-3 space-y-3 font-sans text-sm">
             <h4 className="font-serif font-bold text-[#FAF6EC] text-base">
-              Explore AyurSankalpa
+              {language === 'mr' ? 'महत्त्वाचे दुवे' : 'Explore AyurSankalpa'}
             </h4>
             <ul className="space-y-2 text-[#EAF2E8]/80 text-xs">
-              <li><Link to="/" className="hover:text-[#C08A28] transition-colors">Home</Link></li>
-              <li><Link to="/about" className="hover:text-[#C08A28] transition-colors">Dr. Ruturaj Kadam & Approach</Link></li>
-              <li><Link to="/specialties" className="hover:text-[#C08A28] transition-colors">All 13 Clinical Specialities</Link></li>
-              <li><Link to="/appointment" className="hover:text-[#C08A28] transition-colors">Book Consultation & Location</Link></li>
+              <li><Link to="/" className="hover:text-[#C08A28] transition-colors">{t.nav.home}</Link></li>
+              <li><Link to="/about" className="hover:text-[#C08A28] transition-colors">{t.nav.about}</Link></li>
+              <li><Link to="/specialties" className="hover:text-[#C08A28] transition-colors">{t.nav.specialties}</Link></li>
+              <li><Link to="/blog" className="hover:text-[#C08A28] transition-colors">{t.nav.blog}</Link></li>
+              <li><Link to="/appointment" className="hover:text-[#C08A28] transition-colors">{t.nav.appointment}</Link></li>
             </ul>
           </div>
 
-          {/* Col 3: Address & Direct Contact */}
-          <div className="md:col-span-3 space-y-3 font-sans text-xs text-[#EAF2E8]/80">
+          {/* Col 3: Address & Google Maps Embed Snippet */}
+          <div className="md:col-span-4 space-y-3 font-sans text-xs text-[#EAF2E8]/80">
             <h4 className="font-serif font-bold text-[#FAF6EC] text-base">
-              Clinic Location
+              {language === 'mr' ? 'क्लिनिकचा पत्ता व नकाशा' : 'Clinic Location & Directions'}
             </h4>
             
             <div className="flex items-start gap-2.5">
               <MapPin className="w-4 h-4 text-[#C08A28] shrink-0 mt-0.5" />
               <div>
+                <span className="font-semibold text-white">{CLINIC_INFO.name}</span><br />
                 <span>{CLINIC_INFO.address.line1}</span><br />
                 <span>{CLINIC_INFO.address.line2}</span><br />
                 <span>{CLINIC_INFO.address.city} - {CLINIC_INFO.address.pin}</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 pt-1">
-              <Phone className="w-4 h-4 text-[#C08A28] shrink-0" />
-              <a href={`tel:${CLINIC_INFO.phone}`} className="hover:text-[#C08A28] transition-colors font-medium">
-                {CLINIC_INFO.phoneFormatted}
+            {/* Embedded Google Map iframe in Footer */}
+            <div className="w-full h-32 rounded-xl overflow-hidden border border-[#7FA173]/30 shadow-xs relative mt-2">
+              <iframe
+                title="AyurSankalpa Clinic Aundh Location Map"
+                src={CLINIC_INFO.mapEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full grayscale contrast-125 opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              />
+            </div>
+
+            <div className="flex items-center justify-between pt-1">
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-[#C08A28] shrink-0" />
+                <a href={`tel:${CLINIC_INFO.phone}`} className="hover:text-[#C08A28] transition-colors font-medium">
+                  {CLINIC_INFO.phoneFormatted}
+                </a>
+              </div>
+
+              <a
+                href="https://maps.google.com/?q=Saket+Apartment+Seasons+Rd+Aundh+Pune"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[11px] text-[#C08A28] hover:underline"
+              >
+                <span>{language === 'mr' ? 'दिशादर्शक' : 'Open in Maps'}</span>
+                <ExternalLink className="w-3 h-3" />
               </a>
             </div>
 
-            <div className="pt-2">
-              <Link
-                to="/appointment"
-                className="inline-block px-4 py-2 rounded-lg bg-[#2F5233] border border-[#7FA173]/30 text-[#FAF6EC] font-semibold text-xs hover:bg-[#FAF6EC] hover:text-[#1F2E22] transition-colors"
-              >
-                Book Appointment
-              </Link>
-            </div>
-
             {/* Social Media Links */}
-            <div className="pt-4 space-y-2">
+            <div className="pt-3 space-y-2 border-t border-[#7FA173]/20">
               <h5 className="font-semibold text-[#FAF6EC] text-xs">Connect With Us</h5>
               <div className="flex items-center gap-4">
                 {/* LinkedIn */}
@@ -87,11 +128,7 @@ export default function Footer() {
                   className="flex items-center gap-1.5 text-[#EAF2E8]/80 hover:text-[#C08A28] transition-colors group"
                   aria-label="Visit Dr. Ruturaj Kadam on LinkedIn"
                 >
-                  <svg 
-                    className="w-4 h-4 fill-current" 
-                    viewBox="0 0 24 24" 
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>
                   <span className="text-xs">LinkedIn</span>
@@ -105,11 +142,7 @@ export default function Footer() {
                   className="flex items-center gap-1.5 text-[#EAF2E8]/80 hover:text-[#C08A28] transition-colors group"
                   aria-label="Follow AyurSankalpa on Instagram"
                 >
-                  <svg 
-                    className="w-4 h-4 fill-current" 
-                    viewBox="0 0 24 24" 
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                     <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
                   </svg>
                   <span className="text-xs">Instagram</span>
@@ -131,7 +164,7 @@ export default function Footer() {
             <span>© {new Date().getFullYear()} AyurSankalpa Clinic. All rights reserved.</span>
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-full bg-[#2F5233] text-[#FAF6EC] hover:bg-[#C08A28] transition-colors cursor-pointer"
+              className="p-2 rounded-full bg-[#2F5233] text-[#FAF6EC] hover:bg-[#C08A28] transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#C08A28] focus-visible:outline-hidden"
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-3.5 h-3.5" />

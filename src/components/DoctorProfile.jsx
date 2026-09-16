@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CLINIC_INFO } from '../data/clinicData';
 import { Award, GraduationCap, Stethoscope, Globe, CheckCircle, ArrowRight } from 'lucide-react';
 
@@ -91,13 +92,13 @@ export default function DoctorProfile() {
               </div>
 
               <div className="pt-2">
-                <a
-                  href="#appointment"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#2F5233] hover:text-[#1E3721] group"
+                <Link
+                  to="/appointment"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#2F5233] hover:text-[#1E3721] group focus-visible:ring-2 focus-visible:ring-[#2F5233] rounded"
                 >
                   <span>Schedule a consultation with Dr. Ruturaj Kadam</span>
                   <ArrowRight className="w-4 h-4 text-[#C08A28] group-hover:translate-x-1 transition-transform" />
-                </a>
+                </Link>
               </div>
 
             </div>

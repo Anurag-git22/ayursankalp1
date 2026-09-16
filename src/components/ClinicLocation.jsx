@@ -1,9 +1,11 @@
 import React from 'react';
 import { CLINIC_INFO } from '../data/clinicData';
-import { MapPin, Phone, Clock, Navigation, Check, ShieldCheck, Compass } from 'lucide-react';
+import { MapPin, Phone, Clock, ExternalLink, Check, Compass, Navigation } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ClinicLocation() {
-  const { address, hours, phone, phoneFormatted } = CLINIC_INFO;
+  const { address, hours, phone, phoneFormatted, mapEmbedUrl } = CLINIC_INFO;
+  const { language } = useLanguage();
 
   return (
     <section id="location" className="py-16 sm:py-24 bg-[#FAF6EC] border-b border-[#2F5233]/10">
@@ -11,39 +13,41 @@ export default function ClinicLocation() {
         
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-14">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#C08A28] bg-[#FAF6EC] px-3.5 py-1 rounded-full border border-[#C08A28]/30">
-            Visit AyurSankalpa
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#2F5233] bg-[#EAF2E8] px-3.5 py-1 rounded-full border border-[#7FA173]/30">
+            {language === 'mr' ? 'क्लिनिक भेट व पत्ता' : 'Visit AyurSankalpa'}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22] mt-3">
-            Clinic Location & Hours
+            {language === 'mr' ? 'क्लिनिक स्थान व वेळ' : 'Clinic Location & Hours'}
           </h2>
           <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-2">
-            Centrally situated in Aundh, Pune with convenient access from Baner, Shivajinagar, and Pimple Saudagar.
+            {language === 'mr'
+              ? 'औंध, पुणे येथे सीझन्स रोडवर, बाणेर, शिवाजीनगर व पिंपळे सौदागर येथून सहज पोहोचता येणारे मध्यवर्ती स्थान.'
+              : 'Centrally situated in Aundh, Pune with convenient access from Baner, Shivajinagar, and Pimple Saudagar.'}
           </p>
         </div>
 
-        {/* Two-Column Grid: Location Details & Interactive Visual Map Guide */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Two-Column Grid: Location Details & Interactive Google Maps Embed */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left Column: Address, Phone, Hours */}
-          <div className="lg:col-span-6 flex flex-col space-y-6 h-full">
+          <div className="lg:col-span-5 flex flex-col space-y-6">
             
             {/* Address Card */}
-            <div className="bg-white/85 p-6 sm:p-7 rounded-2xl border border-[#2F5233]/15 shadow-xs space-y-4 flex-grow">
+            <div className="bg-white/90 p-6 sm:p-7 rounded-2xl border border-[#2F5233]/15 shadow-xs space-y-4">
               <div className="flex items-start gap-3.5">
                 <div className="w-10 h-10 rounded-xl bg-[#EAF2E8] text-[#2F5233] flex items-center justify-center shrink-0 border border-[#7FA173]/30">
                   <MapPin className="w-5 h-5 text-[#2F5233]" />
                 </div>
                 <div className="space-y-1">
                   <h3 className="font-serif font-bold text-lg text-[#1F2E22]">
-                    AyurSankalpa Clinic
+                    {CLINIC_INFO.name}
                   </h3>
                   <p className="text-sm text-[#1F2E22]/90 leading-relaxed font-sans">
                     {address.line1}<br />
                     {address.line2}<br />
                     {address.city} - {address.pin}, {address.state}
                   </p>
-                  <p className="text-xs text-[#C08A28] font-medium pt-1">
+                  <p className="text-xs text-[#C08A28] font-semibold pt-1">
                     Landmark: {address.landmark}
                   </p>
                 </div>
@@ -57,17 +61,27 @@ export default function ClinicLocation() {
                     {phoneFormatted}
                   </a>
                 </div>
+
+                <a
+                  href="https://maps.google.com/?q=Saket+Apartment+Seasons+Rd+Aundh+Pune"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2F5233] bg-[#EAF2E8] px-3 py-1 rounded-lg hover:bg-[#2F5233] hover:text-[#FAF6EC] transition-colors"
+                >
+                  <Navigation className="w-3.5 h-3.5" />
+                  <span>Get Directions</span>
+                </a>
               </div>
             </div>
 
             {/* Operating Hours Card */}
-            <div className="bg-white/85 p-6 sm:p-7 rounded-2xl border border-[#2F5233]/15 shadow-xs space-y-4 flex-grow">
+            <div className="bg-white/90 p-6 sm:p-7 rounded-2xl border border-[#2F5233]/15 shadow-xs space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[#EAF2E8] text-[#2F5233] flex items-center justify-center shrink-0 border border-[#7FA173]/30">
                   <Clock className="w-5 h-5 text-[#2F5233]" />
                 </div>
                 <h3 className="font-serif font-bold text-lg text-[#1F2E22]">
-                  Consultation Timings
+                  {language === 'mr' ? 'तपासणीच्या वेळा' : 'Consultation Timings'}
                 </h3>
               </div>
 
@@ -86,65 +100,72 @@ export default function ClinicLocation() {
               </div>
             </div>
 
+            {/* Transit Landmarks Card */}
+            <div className="bg-white/80 p-5 rounded-2xl border border-[#2F5233]/15 text-xs text-[#1F2E22]/80 space-y-2.5 font-sans">
+              <div className="font-semibold text-[#2F5233] uppercase tracking-wider flex items-center gap-1.5">
+                <Compass className="w-3.5 h-3.5 text-[#C08A28]" />
+                <span>Transit & Parking Convenience</span>
+              </div>
+              <ul className="space-y-1.5">
+                <li className="flex items-start gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#7FA173] shrink-0 mt-0.5" />
+                  <span><strong>Elevator Access:</strong> Full 1st-floor elevator available inside Saket Apartment.</span>
+                </li>
+                <li className="flex items-start gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#7FA173] shrink-0 mt-0.5" />
+                  <span><strong>Parking:</strong> Two-wheeler parking and street parking along Seasons Road.</span>
+                </li>
+                <li className="flex items-start gap-1.5">
+                  <Check className="w-3.5 h-3.5 text-[#7FA173] shrink-0 mt-0.5" />
+                  <span><strong>From Baner / Parihar Chowk:</strong> Only 5-8 minutes travel time.</span>
+                </li>
+              </ul>
+            </div>
+
           </div>
 
-          {/* Right Column: Directional Map Card */}
-          <div className="lg:col-span-6 bg-gradient-to-br from-white to-[#FAF6EC] rounded-2xl p-6 sm:p-8 border border-[#2F5233]/15 shadow-sm flex flex-col justify-between relative overflow-hidden h-full">
-            
-            {/* Top Tag */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#2F5233] uppercase tracking-wider">
-                  <Compass className="w-4 h-4 text-[#C08A28]" />
-                  <span>Aundh Accessibility</span>
+          {/* Right Column: Embedded Interactive Google Maps Iframe */}
+          <div className="lg:col-span-7 flex flex-col">
+            <div className="bg-white/95 rounded-2xl p-4 sm:p-5 border border-[#2F5233]/15 shadow-md flex flex-col h-full">
+              
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#2F5233]/10">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-[#C08A28]" />
+                  <span className="font-serif font-bold text-base text-[#1F2E22]">
+                    Interactive Google Map — Saket Apartment, Seasons Rd
+                  </span>
                 </div>
-                <span className="text-xs text-[#1F2E22]/60 font-sans">Pune, Maharashtra</span>
+                <a
+                  href="https://maps.google.com/?q=Saket+Apartment+Seasons+Rd+Aundh+Pune"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-[#2F5233] hover:text-[#C08A28] font-medium"
+                >
+                  <span>Open App</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#1F2E22]">
-                Reaching Saket Apartment, Seasons Road
-              </h3>
-
-              {/* Styled Map Graphic / Navigation Guide */}
-              <div className="rounded-xl bg-[#EAF2E8]/70 border border-[#2F5233]/15 p-5 space-y-3">
-                <div className="text-xs font-semibold text-[#2F5233] uppercase tracking-wide">
-                  Key Transit Landmarks
-                </div>
-                <ul className="text-xs sm:text-sm text-[#1F2E22]/80 space-y-2 font-sans">
-                  <li className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-[#7FA173] shrink-0 mt-0.5" />
-                    <span><strong>Next to Takalkar Classes</strong> on Seasons Road in Shambhu Vihar Society.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-[#7FA173] shrink-0 mt-0.5" />
-                    <span><strong>1st Floor Elevator Access</strong> available inside Saket Apartment.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-[#7FA173] shrink-0 mt-0.5" />
-                    <span><strong>Parking:</strong> Dedicated visitor two-wheeler & designated car parking along Seasons Road.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-[#7FA173] shrink-0 mt-0.5" />
-                    <span><strong>Connectivity:</strong> 5 mins from Aundh DP Road & Parihar Chowk; 10 mins from Baner.</span>
-                  </li>
-                </ul>
+              {/* The Google Maps Iframe */}
+              <div className="w-full flex-grow min-h-[380px] sm:min-h-[460px] rounded-xl overflow-hidden border border-[#2F5233]/15 relative">
+                <iframe
+                  title="AyurSankalpa Clinic Aundh Google Maps Location"
+                  src={mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '380px' }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                />
               </div>
+
+              <div className="mt-3 text-[11px] text-[#1F2E22]/60 text-center flex items-center justify-center gap-2 font-sans">
+                <span>📍 Next to Takalkar Classes, Shambhu Vihar Society, Seasons Road, Aundh, Pune - 411007</span>
+              </div>
+
             </div>
-
-            {/* Bottom Assistance Action */}
-            <div className="pt-6 mt-6 border-t border-[#2F5233]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="text-xs text-[#1F2E22]/70">
-                Need help finding the clinic? Call clinic front-desk:
-              </div>
-              <a
-                href={`tel:${phone}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#2F5233] text-[#FAF6EC] text-xs font-semibold hover:bg-[#1E3721] transition-all shrink-0"
-              >
-                <Phone className="w-3.5 h-3.5 text-[#C08A28]" />
-                <span>Call {phone}</span>
-              </a>
-            </div>
-
           </div>
 
         </div>
