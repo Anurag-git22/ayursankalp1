@@ -1,28 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Specialties from '../components/Specialties';
-import logoMark from '../assets/logo-mark.png';
 import { Calendar, ArrowRight } from 'lucide-react';
 
 export default function SpecialtiesPage({ onSelectSpecialty }) {
   return (
     <div className="relative">
-      
-      {/* Background Watermark */}
-      <div className="absolute top-40 right-1/2 translate-x-1/2 w-[700px] h-[700px] pointer-events-none opacity-[0.05] select-none z-0">
-        <img src={logoMark} alt="" className="w-full h-full object-contain filter" />
-      </div>
 
       <div className="relative z-10">
       {/* Page Header */}
       <div className="bg-[#F5EFE0]/60 border-b border-[#2F5233]/10 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-xs text-[#2F5233] font-medium">
-            <Link to="/" className="hover:underline">Home</Link>
-            <span>/</span>
-            <span className="text-[#C08A28] font-semibold">13 Clinical Specialities</span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22] mt-3">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22]">
             Our 13 Clinical Specialities
           </h1>
           <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-2 max-w-2xl">

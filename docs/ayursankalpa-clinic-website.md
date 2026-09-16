@@ -15,7 +15,7 @@
 - **Placement Rules:**
   - Header / Navigation: Small icon next to serif wordmark `AYURSANKALPA CLINIC`.
   - Footer: Larger emblem version with full typography.
-  - Background Watermark: Large, ~5% opacity, green gradient tones, non-interfering with text contrast behind Hero, About page doctor bio, and Appointment form.
+  - **Centered Background Watermark (Site-Wide):** Single `<LogoWatermark />` component placed in `App.jsx` appears consistently on all pages. Fixed to viewport center (`position: fixed`), stays in place as user scrolls. 700px max size, 6% opacity. Includes `pointer-events: none` and `aria-hidden="true"` for full accessibility. Static design (no animation), provides subtle visual texture without compromising text readability. Uses `mix-blend-mode: multiply` for elegant integration with page backgrounds.
   - Confirmation State: Small centered mark upon simulated form submission.
 
 ---

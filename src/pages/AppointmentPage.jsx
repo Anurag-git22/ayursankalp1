@@ -3,7 +3,6 @@ import { useSearchParams, Link } from 'react-router-dom';
 import AppointmentForm from '../components/AppointmentForm';
 import ClinicLocation from '../components/ClinicLocation';
 import FAQ from '../components/FAQ';
-import logoMark from '../assets/logo-mark.png';
 
 export default function AppointmentPage() {
   const [searchParams] = useSearchParams();
@@ -11,22 +10,12 @@ export default function AppointmentPage() {
 
   return (
     <div className="relative">
-      
-      {/* Background Watermark */}
-      <div className="absolute top-40 right-1/2 translate-x-1/2 w-[700px] h-[700px] pointer-events-none opacity-[0.05] select-none z-0">
-        <img src={logoMark} alt="" className="w-full h-full object-contain filter" />
-      </div>
 
       <div className="relative z-10">
       {/* Page Header */}
       <div className="bg-[#F5EFE0]/60 border-b border-[#2F5233]/10 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-xs text-[#2F5233] font-medium">
-            <Link to="/" className="hover:underline">Home</Link>
-            <span>/</span>
-            <span className="text-[#C08A28] font-semibold">Appointment Booking & Location</span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22] mt-3">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22]">
             Schedule a Consultation
           </h1>
           <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-2 max-w-2xl">

@@ -137,14 +137,10 @@ export default function Specialties({ onSelectSpecialty }) {
         {/* Staggered Organic Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredSpecialties.map((item, index) => {
-            const isFeatured = index === 0 || index === 1; // subtle organic variation
-            
             return (
               <div
                 key={item.id}
-                className={`group rounded-2xl bg-white/90 p-6 sm:p-7 border border-[#2F5233]/15 shadow-xs hover:shadow-xl hover:border-[#2F5233]/30 transition-all duration-300 flex flex-col justify-between relative overflow-hidden ${
-                  isFeatured ? 'bg-gradient-to-br from-white via-white to-[#EAF2E8]/40' : ''
-                }`}
+                className="group rounded-2xl bg-white/90 p-6 sm:p-7 border border-[#2F5233]/15 shadow-xs hover:shadow-xl hover:border-[#2F5233]/30 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
               >
                 {/* Organic Leaf sprig icon on card corner */}
                 <div className="absolute -top-3 -right-3 w-12 h-12 text-[#7FA173]/15 pointer-events-none group-hover:text-[#C08A28]/20 transition-colors">

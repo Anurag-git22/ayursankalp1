@@ -8,11 +8,6 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#FAF6EC] via-[#F5EFE0] to-[#FAF6EC] pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-[#2F5233]/10">
       
-      {/* Background Watermark (Large, 5% opacity, green gradient tones) */}
-      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[550px] h-[550px] pointer-events-none opacity-[0.05] select-none">
-        <img src={logoMark} alt="" className="w-full h-full object-contain filter" />
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           

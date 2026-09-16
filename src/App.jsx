@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import LogoWatermark from './components/LogoWatermark';
 
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -16,6 +17,9 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <div className="min-h-screen flex flex-col bg-[#FAF6EC] text-[#1F2E22] selection:bg-[#7FA173]/30 selection:text-[#1F2E22]">
+        {/* Centered Logo Watermark - Appears on all pages */}
+        <LogoWatermark />
+
         {/* Shared Navbar across all pages */}
         <Navbar />
 

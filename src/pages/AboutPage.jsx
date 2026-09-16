@@ -3,28 +3,17 @@ import { Link } from 'react-router-dom';
 import DoctorProfile from '../components/DoctorProfile';
 import ApproachPillars from '../components/ApproachPillars';
 import TreatmentFlow from '../components/TreatmentFlow';
-import logoMark from '../assets/logo-mark.png';
 import { Calendar, ArrowRight } from 'lucide-react';
 
 export default function AboutPage() {
   return (
     <div className="relative">
-      
-      {/* Background Watermark behind Doctor Bio (Large, 5% opacity, non-interfering) */}
-      <div className="absolute top-40 right-1/2 translate-x-1/2 w-[700px] h-[700px] pointer-events-none opacity-[0.05] select-none z-0">
-        <img src={logoMark} alt="" className="w-full h-full object-contain filter" />
-      </div>
 
       <div className="relative z-10">
-        {/* Breadcrumb / Page Intro */}
+        {/* Page Header */}
         <div className="bg-[#F5EFE0]/60 border-b border-[#2F5233]/10 py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-2 text-xs text-[#2F5233] font-medium">
-              <Link to="/" className="hover:underline">Home</Link>
-              <span>/</span>
-              <span className="text-[#C08A28] font-semibold">About Doctor & Clinical Approach</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22] mt-3">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F2E22]">
               About Dr. Ruturaj Kadam
             </h1>
             <p className="text-sm sm:text-base text-[#1F2E22]/75 font-sans mt-2 max-w-2xl">
