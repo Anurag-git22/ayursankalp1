@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import TrustBadges from '../components/TrustBadges';
@@ -7,13 +7,41 @@ import { CLINIC_INFO, APPROACH_PILLARS } from '../data/clinicData';
 import { 
   ArrowRight, 
   Calendar, 
-  ChevronRight,
-  Stethoscope,
-  BookOpen
+  ChevronRight, 
+  Stethoscope, 
+  BookOpen 
 } from 'lucide-react';
 
 export default function HomePage() {
   const { doctor } = CLINIC_INFO;
+  const [activePillarIndex, setActivePillarIndex] = useState(0);
+  const pillarSliderRef = useRef(null);
+
+  const handlePillarScroll = () => {
+    if (!pillarSliderRef.current) return;
+    const el = pillarSliderRef.current;
+    const children = Array.from(el.children);
+    const scrollCenter = el.scrollLeft + el.clientWidth / 2;
+    let closestIndex = 0;
+    let minDiff = Infinity;
+    children.forEach((child, i) => {
+      const childCenter = child.offsetLeft + child.offsetWidth / 2;
+      const diff = Math.abs(scrollCenter - childCenter);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIndex = i;
+      }
+    });
+    setActivePillarIndex(closestIndex);
+  };
+
+  const scrollToPillar = (index) => {
+    if (!pillarSliderRef.current) return;
+    const child = pillarSliderRef.current.children[index];
+    if (child) {
+      child.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  };
 
   return (
     <div className="space-y-0">
@@ -69,19 +97,30 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* 3 Pillars Cards: Mobile Horizontal Swipeable Carousel / Desktop Grid */}
+          <div
+            ref={pillarSliderRef}
+            onScroll={handlePillarScroll}
+            className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth no-scrollbar gap-4 md:gap-6 pb-4 md:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0"
+          >
             {APPROACH_PILLARS.map((pillar) => (
               <div
                 key={pillar.number}
-                className="bg-[#FAF6EC] rounded-2xl p-6 border border-[#2F5233]/15 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                className="shrink-0 w-[84vw] max-w-[340px] md:w-auto md:max-w-none md:shrink snap-center group relative bg-[#FAF6EC] rounded-2xl p-6 border border-[#2F5233]/15 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
               >
+                {/* Top Accent Line */}
+                <div className="absolute top-0 left-6 right-6 h-1 bg-[#2F5233]/20 rounded-full group-hover:bg-[#C08A28] transition-colors" />
+
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-[#C08A28] bg-[#FAF6EC] px-2 py-0.5 rounded border border-[#C08A28]/30">
+                    <span className="text-xs font-mono font-bold text-[#C08A28] bg-white px-2 py-0.5 rounded border border-[#C08A28]/30">
                       Pillar {pillar.number}
                     </span>
+                    <span className="text-2xl font-serif font-bold text-[#2F5233]/25 group-hover:text-[#2F5233]/50 transition-colors">
+                      {pillar.number}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-serif font-bold text-[#1F2E22]">
+                  <h3 className="text-lg font-serif font-bold text-[#1F2E22] group-hover:text-[#2F5233] transition-colors">
                     {pillar.title}
                   </h3>
                   <p className="text-xs text-[#1F2E22]/75 leading-relaxed">
@@ -101,6 +140,30 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          {/* Mobile Swipe Indicators & Scroll Hint */}
+          <div className="md:hidden mt-4 flex flex-col items-center gap-2">
+            <div className="flex items-center gap-2">
+              {APPROACH_PILLARS.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => scrollToPillar(i)}
+                  aria-label={`Go to pillar ${i + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    activePillarIndex === i
+                      ? 'w-6 bg-[#2F5233]'
+                      : 'w-2 bg-[#2F5233]/25 hover:bg-[#2F5233]/50'
+                  }`}
+                />
+              ))}
+            </div>
+            <span className="text-[11px] font-sans text-[#2F5233]/65 flex items-center gap-1.5">
+              <span>Swipe to explore pillars</span>
+              <span className="text-[#C08A28]">({activePillarIndex + 1}/{APPROACH_PILLARS.length})</span>
+            </span>
+          </div>
+
 
         </div>
       </section>
