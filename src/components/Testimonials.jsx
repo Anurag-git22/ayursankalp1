@@ -1,9 +1,38 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { TESTIMONIALS } from '../data/testimonialsData';
 import { Star, Quote, HeartHandshake, CheckCircle2 } from 'lucide-react';
 
 export default function Testimonials({ variant = 'home' }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sliderRef = useRef(null);
+
   const displayItems = variant === 'home' ? TESTIMONIALS.slice(0, 3) : TESTIMONIALS;
+
+  const handleScroll = () => {
+    if (!sliderRef.current) return;
+    const el = sliderRef.current;
+    const children = Array.from(el.children);
+    const scrollCenter = el.scrollLeft + el.clientWidth / 2;
+    let closestIndex = 0;
+    let minDiff = Infinity;
+    children.forEach((child, i) => {
+      const childCenter = child.offsetLeft + child.offsetWidth / 2;
+      const diff = Math.abs(scrollCenter - childCenter);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIndex = i;
+      }
+    });
+    setActiveIndex(closestIndex);
+  };
+
+  const scrollToCard = (index) => {
+    if (!sliderRef.current) return;
+    const child = sliderRef.current.children[index];
+    if (child) {
+      child.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  };
 
   return (
     <section className="py-16 sm:py-20 bg-gradient-to-b from-[#FAF6EC] via-[#F6EFE0] to-[#FAF6EC] border-b border-[#2F5233]/10 relative overflow-hidden">
@@ -23,12 +52,16 @@ export default function Testimonials({ variant = 'home' }) {
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className={`grid grid-cols-1 ${displayItems.length === 4 ? 'md:grid-cols-2 gap-6' : 'md:grid-cols-3 gap-6'}`}>
+        {/* Testimonials Cards: Mobile Horizontal Swipeable Carousel / Desktop Grid */}
+        <div
+          ref={sliderRef}
+          onScroll={handleScroll}
+          className={`flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth no-scrollbar gap-4 md:gap-6 pb-4 md:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 ${displayItems.length === 4 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}
+        >
           {displayItems.map((item) => (
             <div
               key={item.id}
-              className="rounded-2xl bg-white/90 p-6 sm:p-7 border border-[#2F5233]/15 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative group"
+              className="shrink-0 w-[85vw] max-w-[340px] md:w-auto md:max-w-none md:shrink snap-center rounded-2xl bg-white/90 p-6 sm:p-7 border border-[#2F5233]/15 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative group"
             >
               <div className="space-y-4">
                 {/* Header: Stars & Tag */}
@@ -75,6 +108,29 @@ export default function Testimonials({ variant = 'home' }) {
           ))}
         </div>
 
+        {/* Mobile Swipe Indicators & Scroll Hint */}
+        <div className="md:hidden mt-4 flex flex-col items-center gap-2">
+          <div className="flex items-center gap-2">
+            {displayItems.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => scrollToCard(i)}
+                aria-label={`Go to testimonial ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeIndex === i
+                    ? 'w-6 bg-[#2F5233]'
+                    : 'w-2 bg-[#2F5233]/25 hover:bg-[#2F5233]/50'
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-[11px] font-sans text-[#2F5233]/65 flex items-center gap-1.5">
+            <span>Swipe to read patient stories</span>
+            <span className="text-[#C08A28]">({activeIndex + 1}/{displayItems.length})</span>
+          </span>
+        </div>
+
         {/* Holistic Reassurance Banner */}
         <div className="mt-10 max-w-2xl mx-auto p-4 rounded-xl bg-white/60 border border-[#2F5233]/10 text-center text-xs text-[#1F2E22]/70 font-sans">
           <span>🌿 Every human constitution (Prakriti) is distinct. Healing plans are uniquely customized following in-depth clinical diagnosis.</span>
@@ -84,3 +140,4 @@ export default function Testimonials({ variant = 'home' }) {
     </section>
   );
 }
+

@@ -1,0 +1,108 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF6EC" />
+      <stop offset="60%" stop-color="#F4EEDF" />
+      <stop offset="100%" stop-color="#EAF2E8" />
+    </linearGradient>
+
+    <!-- Ring Gradient -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37" />
+      <stop offset="50%" stop-color="#C08A28" />
+      <stop offset="100%" stop-color="#8F6210" />
+    </linearGradient>
+
+    <!-- Coat Gradient -->
+    <linearGradient id="coatGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2F5233" />
+      <stop offset="100%" stop-color="#1E3721" />
+    </linearGradient>
+
+    <!-- Stethoscope Gold -->
+    <linearGradient id="stethoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C08A28" />
+      <stop offset="50%" stop-color="#E5C158" />
+      <stop offset="100%" stop-color="#C08A28" />
+    </linearGradient>
+
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1F2E22" flood-opacity="0.15" />
+    </filter>
+
+    <clipPath id="circleClip">
+      <rect width="400" height="400" rx="32" />
+    </clipPath>
+  </defs>
+
+  <!-- Background Base with rounded corners -->
+  <g clip-path="url(#circleClip)">
+    <rect width="400" height="400" fill="url(#bgGradient)" />
+
+    <!-- Decorative Mandala / Botanical Rings -->
+    <circle cx="200" cy="200" r="160" fill="none" stroke="#2F5233" stroke-opacity="0.07" stroke-width="1.5" stroke-dasharray="4 6" />
+    <circle cx="200" cy="200" r="130" fill="none" stroke="#C08A28" stroke-opacity="0.12" stroke-width="2" />
+    <circle cx="200" cy="200" r="100" fill="none" stroke="#2F5233" stroke-opacity="0.05" stroke-width="1" />
+
+    <!-- Doctor Silhouette / Illustration -->
+    <!-- Shoulders & Coat -->
+    <path d="M70 410 C70 330 120 295 160 285 L200 325 L240 285 C280 295 330 330 330 410 Z" fill="url(#coatGradient)" filter="url(#softShadow)" />
+    
+    <!-- White / Cream Inner Kurta / Shirt V-neck -->
+    <polygon points="175,280 225,280 200,345" fill="#FAF6EC" />
+    <line x1="200" y1="300" x2="200" y2="345" stroke="#C08A28" stroke-width="2" stroke-dasharray="2 2" />
+
+    <!-- Neck -->
+    <path d="M182 230 L182 285 Q200 295 218 285 L218 230 Z" fill="#D3A575" />
+    <path d="M182 270 Q200 280 218 270 L218 285 Q200 295 182 285 Z" fill="#C29263" />
+
+    <!-- Head / Face -->
+    <ellipse cx="200" cy="195" rx="46" ry="56" fill="#E2B789" filter="url(#softShadow)" />
+
+    <!-- Ears -->
+    <ellipse cx="152" cy="196" rx="7" ry="12" fill="#D3A575" />
+    <ellipse cx="248" cy="196" rx="7" ry="12" fill="#D3A575" />
+
+    <!-- Professional Hair -->
+    <path d="M152 185 C148 150 165 130 200 130 C235 130 252 150 248 185 C244 160 236 144 200 144 C164 144 156 160 152 185 Z" fill="#24211E" />
+    <path d="M155 170 Q200 135 245 170 Q235 140 200 138 Q165 140 155 170 Z" fill="#1C1917" />
+
+    <!-- Beard & Mustache (neat professional doctor trim) -->
+    <path d="M178 220 Q200 226 222 220 Q215 245 200 249 Q185 245 178 220 Z" fill="#24211E" />
+    <path d="M182 216 Q200 220 218 216 Q200 224 182 216 Z" fill="#1A1816" />
+
+    <!-- Eyebrows & Eyes -->
+    <path d="M172 184 Q182 180 190 184" fill="none" stroke="#24211E" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M210 184 Q218 180 228 184" fill="none" stroke="#24211E" stroke-width="2.5" stroke-linecap="round" />
+    
+    <!-- Gentle eyes -->
+    <ellipse cx="181" cy="190" rx="3.5" ry="2" fill="#1C1917" />
+    <ellipse cx="219" cy="190" rx="3.5" ry="2" fill="#1C1917" />
+
+    <!-- Nose -->
+    <path d="M200 188 L197 205 L204 206" fill="none" stroke="#B88657" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Warm Smile -->
+    <path d="M188 228 Q200 235 212 228" fill="none" stroke="#8F6210" stroke-width="1.8" stroke-linecap="round" />
+
+    <!-- Ayurvedic Golden Stethoscope -->
+    <!-- Tube behind neck -->
+    <path d="M166 270 C160 320 180 375 200 375 C220 375 240 320 234 270" fill="none" stroke="url(#stethoGradient)" stroke-width="5" stroke-linecap="round" />
+    <!-- Stethoscope Chest Piece / Bell -->
+    <circle cx="200" cy="375" r="12" fill="url(#goldGradient)" filter="url(#softShadow)" />
+    <circle cx="200" cy="375" r="7" fill="#2F5233" />
+    <circle cx="200" cy="375" r="3" fill="#FAF6EC" />
+
+    <!-- Coat Lapels / Collar -->
+    <path d="M152 284 L175 350 L195 320 L168 280 Z" fill="#3D6A42" />
+    <path d="M248 284 L225 350 L205 320 L232 280 Z" fill="#3D6A42" />
+
+    <!-- Gold Doctor Lapel Pin (Caduceus / Leaf) -->
+    <circle cx="168" cy="315" r="4" fill="url(#goldGradient)" />
+
+    <!-- Elegant Frame Border -->
+    <rect x="6" y="6" width="388" height="388" rx="28" fill="none" stroke="url(#goldGradient)" stroke-width="2" stroke-opacity="0.4" />
+    <rect x="12" y="12" width="376" height="376" rx="24" fill="none" stroke="#2F5233" stroke-width="1" stroke-opacity="0.15" />
+  </g>
+</svg>

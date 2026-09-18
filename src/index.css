@@ -107,3 +107,13 @@ textarea:focus-visible {
 ::-webkit-scrollbar-thumb:hover {
   background: #2F5233;
 }
+
+/* Hide scrollbar for clean horizontal swipe on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

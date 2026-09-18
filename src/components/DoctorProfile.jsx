@@ -57,20 +57,49 @@ export default function DoctorProfile() {
           <div className="lg:col-span-7 space-y-6">
             <div className="bg-white/80 backdrop-blur-xs p-6 sm:p-8 rounded-2xl border border-[#2F5233]/15 shadow-sm space-y-5">
               
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#2F5233]/10">
-                <div>
-                  <h3 className="text-2xl font-serif font-bold text-[#1F2E22]">
-                    {doctor.name}
-                  </h3>
-                  <p className="text-sm font-medium text-[#2F5233] mt-0.5">
-                    {doctor.title}
+              {/* Profile Card Header with Doctor Headshot */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-5 border-b border-[#2F5233]/10">
+                {/* Doctor Headshot Frame (Easy to swap with real photo) */}
+                <div className="relative shrink-0">
+                  <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-[#C08A28]/40 shadow-md bg-gradient-to-br from-[#FAF6EC] via-[#F4EEDF] to-[#EAF2E8] relative group">
+                    <img
+                      src="/doctor-placeholder.svg"
+                      alt={`${doctor.name} - ${doctor.title}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-[#2F5233]/15 rounded-2xl pointer-events-none" />
+                  </div>
+                  {/* Stethoscope Accent Badge */}
+                  <div className="absolute -bottom-2 -right-2 bg-[#2F5233] text-[#FAF6EC] p-2 rounded-xl border-2 border-[#FAF6EC] shadow-sm flex items-center justify-center">
+                    <Stethoscope className="w-4 h-4 text-[#C08A28]" />
+                  </div>
+                </div>
+
+                {/* Doctor Identity */}
+                <div className="flex-1 text-center sm:text-left space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div>
+                      <h3 className="text-2xl font-serif font-bold text-[#1F2E22]">
+                        {doctor.name}
+                      </h3>
+                      <p className="text-sm font-medium text-[#2F5233] mt-0.5">
+                        {doctor.title}
+                      </p>
+                    </div>
+                    <div>
+                      <div className="inline-flex px-3.5 py-1.5 rounded-full bg-[#EAF2E8] border border-[#7FA173]/30 text-xs font-semibold text-[#2F5233] items-center gap-1.5">
+                        <Award className="w-4 h-4 text-[#C08A28]" />
+                        <span>{doctor.experienceYears}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-[#1F2E22]/70 font-sans leading-relaxed pt-1">
+                    {doctor.qualifications} • PGDEMS • DDM (Diabetes) • Integrative Therapies (USA)
                   </p>
                 </div>
-                <div className="px-3.5 py-1.5 rounded-full bg-[#EAF2E8] border border-[#7FA173]/30 text-xs font-semibold text-[#2F5233] flex items-center gap-1.5">
-                  <Award className="w-4 h-4 text-[#C08A28]" />
-                  <span>{doctor.experienceYears}</span>
-                </div>
               </div>
+
 
               <div className="space-y-4 text-sm sm:text-base text-[#1F2E22]/85 leading-relaxed font-sans">
                 <p>
