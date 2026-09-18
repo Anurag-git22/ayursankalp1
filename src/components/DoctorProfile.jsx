@@ -1,37 +1,91 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CLINIC_INFO } from '../data/clinicData';
-import { Award, GraduationCap, Stethoscope, Globe, CheckCircle, ArrowRight } from 'lucide-react';
+import { 
+  Award, 
+  GraduationCap, 
+  Stethoscope, 
+  Globe, 
+  ArrowRight, 
+  Activity, 
+  CheckCircle2 
+} from 'lucide-react';
 
 export default function DoctorProfile() {
   const { doctor } = CLINIC_INFO;
+  const [activeDegreeIndex, setActiveDegreeIndex] = useState(0);
+  const degreeSliderRef = useRef(null);
 
   const credentialsList = [
     {
+      number: "01",
       title: "MD (Ayurveda), Pune",
-      desc: "Postgraduate clinical specialization with rigorous classical and hospital-based training in internal medicine (Kayachikitsa)."
+      tagline: "Internal Medicine (Kayachikitsa)",
+      desc: "Postgraduate clinical specialization with rigorous classical and hospital-based training in internal medicine.",
+      icon: GraduationCap
     },
     {
+      number: "02",
       title: "BAMS, Pune",
-      desc: "Comprehensive foundation in Ayurvedic anatomy, physiology (Sharira Kriya), pharmacology (Dravyaguna), and diagnosis."
+      tagline: "Classical Foundations & Diagnostics",
+      desc: "Comprehensive foundation in Ayurvedic anatomy, physiology (Sharira Kriya), pharmacology (Dravyaguna), and pulse diagnosis.",
+      icon: Award
     },
     {
-      title: "DDM (Diploma in Diabetes Management)",
-      desc: "Advanced clinical specialization in metabolic pathways, insulin resistance reversal, and lifestyle glycemic regulation."
+      number: "03",
+      title: "DDM (Diabetes Management)",
+      tagline: "Metabolic & Glycemic Reversal",
+      desc: "Advanced clinical specialization in metabolic pathways, insulin resistance reversal, and lifestyle glycemic regulation.",
+      icon: Activity
     },
     {
-      title: "PGDEMS (Emergency Medical Services)",
-      desc: "Modern acute medical triaging, emergency protocols, and patient safety integration."
+      number: "04",
+      title: "PGDEMS (Emergency Services)",
+      tagline: "Modern Acute Triaging & Safety",
+      desc: "Modern acute medical triaging, critical care protocols, and patient safety integration with contemporary hospital care.",
+      icon: Stethoscope
     },
     {
+      number: "05",
       title: "DiH (Pune)",
-      desc: "Specialized diploma in holistic health management, community wellness, and chronic illness mitigation."
+      tagline: "Holistic Health & Mitigation",
+      desc: "Specialized diploma in holistic health management, community wellness, and long-term chronic illness mitigation.",
+      icon: CheckCircle2
     },
     {
-      title: "Certified in Integrative Therapies & Healing Practices (USA)",
-      desc: "International exposure to evidence-informed mind-body medicine, stress neurobiology, and integrative therapeutic systems."
+      number: "06",
+      title: "Integrative Therapies (USA)",
+      tagline: "Mind-Body Medicine & Neurobiology",
+      desc: "International certification in evidence-informed mind-body medicine, stress neurobiology, and integrative therapeutic systems.",
+      icon: Globe
     }
   ];
+
+  const handleDegreeScroll = () => {
+    if (!degreeSliderRef.current) return;
+    const el = degreeSliderRef.current;
+    const children = Array.from(el.children);
+    const scrollCenter = el.scrollLeft + el.clientWidth / 2;
+    let closestIndex = 0;
+    let minDiff = Infinity;
+    children.forEach((child, i) => {
+      const childCenter = child.offsetLeft + child.offsetWidth / 2;
+      const diff = Math.abs(scrollCenter - childCenter);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIndex = i;
+      }
+    });
+    setActiveDegreeIndex(closestIndex);
+  };
+
+  const scrollToDegree = (index) => {
+    if (!degreeSliderRef.current) return;
+    const child = degreeSliderRef.current.children[index];
+    if (child) {
+      child.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  };
 
   return (
     <section id="doctor" className="py-16 sm:py-20 bg-[#FAF6EC] border-b border-[#2F5233]/10">
@@ -133,42 +187,99 @@ export default function DoctorProfile() {
             </div>
           </div>
 
-          {/* Right: Qualifications & Certifications */}
+          {/* Right: Qualifications & Certifications (Pillars style) */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="bg-[#FAF6EC] p-6 sm:p-7 rounded-2xl border border-[#2F5233]/15 shadow-sm space-y-5">
-              <div className="flex items-center gap-2 text-[#2F5233] font-serif font-bold text-lg">
+            
+            <div className="flex items-center justify-between pb-2 border-b border-[#2F5233]/10">
+              <div className="flex items-center gap-2 text-[#2F5233] font-serif font-bold text-lg sm:text-xl">
                 <GraduationCap className="w-5 h-5 text-[#C08A28]" />
-                <span>Degrees & Clinical Certifications</span>
+                <span>Degrees & Certifications</span>
               </div>
+              <span className="text-[11px] font-semibold text-[#C08A28] bg-white px-2.5 py-0.5 rounded-full border border-[#C08A28]/30">
+                6 Credentials
+              </span>
+            </div>
 
-              <div className="space-y-3.5">
-                {credentialsList.map((cred, idx) => (
+            {/* Degree Cards: Mobile Horizontal Swipeable Carousel / Tablet 2-col / Desktop 1-col */}
+            <div
+              ref={degreeSliderRef}
+              onScroll={handleDegreeScroll}
+              className="flex md:grid md:grid-cols-2 lg:grid-cols-1 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth no-scrollbar gap-4 pb-3 md:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0"
+            >
+              {credentialsList.map((cred) => {
+                const IconComponent = cred.icon;
+                return (
                   <div
-                    key={idx}
-                    className="p-3.5 rounded-xl bg-white/70 border border-[#2F5233]/10 hover:border-[#2F5233]/30 transition-colors"
+                    key={cred.number}
+                    className="shrink-0 w-[84vw] max-w-[340px] md:w-auto md:max-w-none md:shrink snap-center group relative bg-white/85 rounded-2xl p-5 sm:p-6 border border-[#2F5233]/15 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between"
                   >
-                    <div className="flex items-start gap-2.5">
-                      <CheckCircle className="w-4 h-4 text-[#7FA173] shrink-0 mt-0.5" />
-                      <div>
-                        <div className="text-xs sm:text-sm font-bold text-[#1F2E22]">
-                          {cred.title}
+                    {/* Top Accent Line (like Pillars) */}
+                    <div className="absolute top-0 left-6 right-6 h-1 bg-[#2F5233]/20 rounded-full group-hover:bg-[#C08A28] transition-colors" />
+
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="w-10 h-10 rounded-xl bg-[#EAF2E8] flex items-center justify-center border border-[#7FA173]/30">
+                          <IconComponent className="w-5 h-5 text-[#C08A28]" />
                         </div>
-                        <div className="text-xs text-[#1F2E22]/70 mt-1 leading-snug">
-                          {cred.desc}
+                        <span className="text-2xl font-serif font-bold text-[#2F5233]/25 group-hover:text-[#2F5233]/50 transition-colors">
+                          {cred.number}
+                        </span>
+                      </div>
+
+                      <div>
+                        <h4 className="text-base font-serif font-bold text-[#1F2E22] group-hover:text-[#2F5233] transition-colors">
+                          {cred.title}
+                        </h4>
+                        <div className="text-xs font-medium text-[#C08A28] mt-0.5 font-serif italic">
+                          {cred.tagline}
                         </div>
                       </div>
+
+                      <p className="text-xs sm:text-sm text-[#1F2E22]/80 leading-relaxed font-sans">
+                        {cred.desc}
+                      </p>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-[#2F5233]/10 flex items-center text-[11px] font-semibold text-[#2F5233] gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#7FA173]" />
+                      <span>Verified Clinical Credential</span>
                     </div>
                   </div>
+                );
+              })}
+            </div>
+
+            {/* Mobile Swipe Indicators & Scroll Hint */}
+            <div className="md:hidden mt-3 flex flex-col items-center gap-2">
+              <div className="flex items-center gap-2">
+                {credentialsList.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => scrollToDegree(i)}
+                    aria-label={`Go to credential ${i + 1}`}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      activeDegreeIndex === i
+                        ? 'w-6 bg-[#2F5233]'
+                        : 'w-2 bg-[#2F5233]/25 hover:bg-[#2F5233]/50'
+                    }`}
+                  />
                 ))}
               </div>
+              <span className="text-[11px] font-sans text-[#2F5233]/65 flex items-center gap-1.5">
+                <span>Swipe to view all credentials</span>
+                <span className="text-[#C08A28]">({activeDegreeIndex + 1}/{credentialsList.length})</span>
+              </span>
+            </div>
 
-              <div className="p-3.5 rounded-xl bg-[#2F5233] text-[#FAF6EC] text-xs flex items-center gap-3">
-                <Globe className="w-5 h-5 text-[#C08A28] shrink-0" />
-                <div>
-                  <span className="font-semibold text-[#FAF6EC]">Integrative Clinical Standard:</span> Safe co-management with existing conventional treatments with zero conflicting medications.
-                </div>
+            {/* Integrative Clinical Standard Banner */}
+            <div className="p-4 rounded-xl bg-[#2F5233] text-[#FAF6EC] text-xs flex items-center gap-3 shadow-xs">
+              <Globe className="w-5 h-5 text-[#C08A28] shrink-0" />
+              <div>
+                <span className="font-semibold text-[#FAF6EC]">Integrative Clinical Standard:</span> Safe co-management with existing conventional treatments with zero conflicting medications.
               </div>
             </div>
+
           </div>
 
         </div>
@@ -177,3 +288,4 @@ export default function DoctorProfile() {
     </section>
   );
 }
+
